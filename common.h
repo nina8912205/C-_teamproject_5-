@@ -3,7 +3,7 @@
 #include <time.h>
 
 /*게임 진행 함수*/
-int elementary(); // 초등학교
+int elementary(); //초등학교
 
 
 /* 아이템 함수 */

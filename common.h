@@ -21,6 +21,6 @@ int elementary(); //초등학교
 void item_random(void);   // 아이템 랜덤 지급 함수
 void item_board(void);       // 아이템 보유 현황 함수
 
-/* 콘솔창 편집 관련 함수 */
+/* 콘솔창  함수 */
 void gotoxy(int x, int y); // 커서 이동 함수
 

@@ -58,6 +58,11 @@ int main(void)
 	item_random();
 
 }
+void gotoxy(int x, int y)
+{
+	COORD Cur = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
+}
 
 // 아이템 추첨함수 : 물약, 시간추가, 단어바꾸기 에서 3개 랜덤 추출. 게임 시작시 , 진급할 시
 // 아이템 저장함수 : 어떤 아이템이 몇개 있는지 현황 표시.

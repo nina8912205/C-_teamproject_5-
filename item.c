@@ -37,7 +37,6 @@ void item_random()
 void item_board()
 {
 	char ch;
-	int item[3] = { addlife, changeword, addtime };
 	printf("아이템 보유 현황을 보고 싶으면 i를 입력하세요: ");
 	while ((ch = getchar()) == '\n');
 	if (ch == 'i')

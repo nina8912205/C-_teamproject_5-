@@ -2,6 +2,8 @@
 
 void elementary()
 {
+	system("cls");
+	
 	/* == 1 학년 == */
 	for (int i = 1; i <= 5; i++)
 	{

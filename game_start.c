@@ -51,13 +51,13 @@ void move_stage(int stage)
 		elementary();
 		break;
 	case MIDDLE:
-		// middle();
+		middle();
 		break;
 	case HIGH:
-		// high();
+		high();
 		break;
 	case GAMERULES:
-		how_to_play();
+		game_rules();
 		break;
 	}
 }

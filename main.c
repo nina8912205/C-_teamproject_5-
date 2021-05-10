@@ -6,10 +6,10 @@ int main(void)
 	system("mode con: cols=120 lines=43"); // 콘솔창 크키 조정
 	
 	/*====================== 게임 시작 =======================*/
-	game_title();  // 게임 타이틀 출력
+	game_title();               // 게임 타이틀 출력
 	stage = game_start_menu();  // 단계 선택
 	move_stage(stage);	    // 단계로 이동
-	if (stage != 23)            // 이름 입력 받기
+	if (stage != GAMERULES)            // 이름 입력 받기
 		get_name();
 	
 	/*======================= 게임진행 =======================*/

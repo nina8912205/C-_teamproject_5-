@@ -3,23 +3,23 @@
 int game_start_menu()
 {
 	int key, x = 67;
-	int y = 17;
+	int y = ELEMENTARY;
 
-	gotoxy(54, 15);
-	printf("1. °ÔÀÓ ½ÃÀÛ");
-	gotoxy(55, 17);
-	printf("- ÃÊµîÇÐ±³");
-	gotoxy(55, 19);
-	printf("- ÁßÇÐ±³");
-	gotoxy(55, 21);
-	printf("- °íµîÇÐ±³");
-	gotoxy(54, 23);
-	printf("2. °ÔÀÓ ¹æ¹ý");
+	gotoxy(54, GAMESTART);
+	printf("1. ê²Œìž„ ì‹œìž‘");
+	gotoxy(55, ELEMENTARY);
+	printf("- ì´ˆë“±í•™êµ");
+	gotoxy(55, MIDDLE);
+	printf("- ì¤‘í•™êµ");
+	gotoxy(55, HIGH);
+	printf("- ê³ ë“±í•™êµ");
+	gotoxy(54, GAMERULES);
+	printf("2. ê²Œìž„ ë°©ë²•");
 
 	while (1) 
 	{
 		gotoxy(x, y);
-		printf("¢¸");
+		printf("â—€");
 		key = _getch();
 		if (key == 224)
 		{
@@ -29,11 +29,11 @@ int game_start_menu()
 			switch (key)
 			{
 			case UP:
-				if (y > 17)
+				if (y > ELEMENTARY)
 					y -= 2;
 				break;
 			case DOWN:
-				if (y < 23)
+				if (y < GAMERULES)
 					y += 2;
 				break;
 			}
@@ -47,16 +47,16 @@ void move_stage(int stage)
 {
 	switch (stage)
 	{
-	case 17:
+	case ELEMENTARY:
 		elementary();
 		break;
-	case 19:
+	case MIDDLE:
 		// middle();
 		break;
-	case 21:
+	case HIGH:
 		// high();
 		break;
-	case 23:
+	case GAMERULES:
 		how_to_play();
 		break;
 	}

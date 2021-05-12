@@ -49,12 +49,15 @@ void move_stage(int stage)
 	{
 	case ELEMENTARY:
 		elementary();
+		get_name();
 		break;
 	case MIDDLE:
 		middle();
+		get_name();
 		break;
 	case HIGH:
 		high();
+		get_name();
 		break;
 	case GAMERULES:
 		game_rules();

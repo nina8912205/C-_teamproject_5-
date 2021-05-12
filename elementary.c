@@ -3,6 +3,9 @@
 void elementary()
 {
 	system("cls");
+	drawline();
+	get_name();
+	item_random();
 	
 	/* == 1 학년 == */
 	for (int i = 1; i <= 5; i++)

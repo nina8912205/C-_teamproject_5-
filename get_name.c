@@ -2,12 +2,12 @@
 
 void get_name()
 {
-	static char name[256];
+	static char name[10];
 
 	gotoxy(47, 21);
-	printf("³× ÀÌ¸§ÀÌ ¹¹´Ï? \n");
+	printf("ë„¤ ì´ë¦„ì´ ë­ë‹ˆ? \n");
 	gotoxy(63, 21);
 	scanf("%s", &name);
 	gotoxy(47, 23);
-	printf("%s ! ¸ÚÁø ÀÌ¸§ÀÌ´Ù!", name);
+	printf("%s ! ë©‹ì§„ ì´ë¦„ì´ë‹¤!", name);
 }

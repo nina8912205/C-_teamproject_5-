@@ -21,7 +21,7 @@
 
 /* 게임 시작 함수 */
 void game_title();          // 게임 타이틀 출력
-int game_start_menu();      // 게임 시작 메뉴 출력, 난이도 선택
+void game_start_menu();     // 게임 시작 메뉴 출력, 난이도 선택
 void move_stage(int stage); // 선택한 난이도로 이동
 void get_name();            // 이름 입력
 void game_rules();          // 게임 방법 출력

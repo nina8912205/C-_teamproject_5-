@@ -2,7 +2,7 @@
 
 void get_name()
 {
-	static char name[10];
+	static char name[100];
 
 	gotoxy(47, 21);
 	printf("네 이름이 뭐니? \n");

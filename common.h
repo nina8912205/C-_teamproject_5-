@@ -43,5 +43,6 @@ void item_random();         // 아이템 뽑기
 /* 콘솔창 편집 함수 */
 void gotoxy(int x, int y);  // 커서 이동 함수
 void drawline();            // 화면 테두리 그리기
+void drawmenu();            // 메뉴 
 void drawitem();            // 아이템, 목숨 출력
 

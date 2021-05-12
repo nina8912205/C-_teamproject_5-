@@ -1,9 +1,11 @@
 #include "common.h"
 
-int game_start_menu()
+void game_start_menu()
 {
 	int key, x = 67;
 	int y = ELEMENTARY;
+	
+	drawline();
 
 	gotoxy(54, GAMESTART);
 	printf("1. 게임 시작");
@@ -41,7 +43,7 @@ int game_start_menu()
 		else if (key == Enter)
 			break;
 	}
-	return y;
+	move_stage(y);
 }
 void move_stage(int stage)
 {
@@ -49,18 +51,16 @@ void move_stage(int stage)
 	{
 	case ELEMENTARY:
 		elementary();
-		get_name();
 		break;
 	case MIDDLE:
 		middle();
-		get_name();
 		break;
 	case HIGH:
 		high();
-		get_name();
 		break;
 	case GAMERULES:
 		game_rules();
+		game_start_menu();
 		break;
 	}
 }

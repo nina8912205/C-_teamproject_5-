@@ -3,6 +3,7 @@
 #include <time.h>
 #include <windows.h>
 #include <conio.h>
+#include <string.h>
 
 #define UP 72
 #define DOWN 80

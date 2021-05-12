@@ -2,19 +2,16 @@
 
 int main(void)
 {
-	int stage;  // 단계
+	int key;  
 	system("mode con: cols=120 lines=43"); // 콘솔창 크키 조정
+	srand((unsigned)time(NULL));
 	
 	/*====================== 게임 시작 =======================*/
-	game_title();                  // 게임 타이틀 출력
-	drawline();	
-	stage = game_start_menu();     // 단계 선택
-	move_stage(stage);	       // 단계로 이동
-	if (stage != GAMERULES)            
-		get_name();            // 이름 입력 받기
-	Sleep(1500);                   // 1.5초 기다리기
-	srand((unsigned)time(NULL));  
-	item_random();                 // 아이템 뽑기
+	game_title();              // 게임 타이틀
+	key = _getch(); 
+	if (key)
+		system("cls");     // 키 입력 -> 화면 지우기
+	game_start_menu();         // 게임 시작 메뉴
 	
 	/*======================= 게임진행 =======================*/
 	if (level == 1)

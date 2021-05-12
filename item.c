@@ -8,7 +8,7 @@ void item_random()
 	system("cls");
 	drawline();
 	gotoxy(52, 15);
-	printf("¾ÆÀÌÅÛÀ» »Ì¾Æº¸ÀÚ\n\n");
+	printf("ì•„ì´í…œì„ ë½‘ì•„ë³´ì\n\n");
 	Sleep(1500);
 	for (i = 1; i < 4; i++)
 	{
@@ -18,26 +18,27 @@ void item_random()
 		case ADDLIFE:
 			life++;
 			gotoxy(56, 16 + i * 2);
-			printf("\'¸ñ¼ûÁõ°¡\'");
+			printf("\'ëª©ìˆ¨ì¦ê°€\'");
 			break;
 		case CHANGEWORD:
 			changeword++;
 			gotoxy(55, 16 + i * 2);
-			printf("\'´Ü¾î¹Ù²Ù±â\'");
+			printf("\'ë‹¨ì–´ë°”ê¾¸ê¸°\'");
 			break;
 		case ADDTIME:
 			addtime++;
 			gotoxy(56, 16 + i * 2);
-			printf("\'½Ã°£Áõ°¡\'");
+			printf("\'ì‹œê°„ì¦ê°€\'");
 			break;
 		case BOMB:
 			gotoxy(58, 16 + i * 2);
-			printf("\'²Î!\'\n\n");
+			printf("\'ê½!\'\n\n");
 			break;
 		}
 	}
 	drawitem();
+	drawmenu();
 	gotoxy(36, 26);
-	printf("¸ñ¼ûÁõ°¡: %d°³, ´Ü¾î¹Ù²Ù±â: %d°³, ½Ã°£Áõ°¡: %d°³ È¹µæ!\n", life-3, changeword, addtime);
+	printf("ëª©ìˆ¨ì¦ê°€: %dê°œ, ë‹¨ì–´ë°”ê¾¸ê¸°: %dê°œ, ì‹œê°„ì¦ê°€: %dê°œ íšë“!\n", life-3, changeword, addtime);
 	printf("\n\n\n\n\n\n\n\n\n\n");
 }

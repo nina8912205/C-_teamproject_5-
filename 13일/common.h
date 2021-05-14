@@ -59,6 +59,7 @@ void gotoxy(int x, int y);  // 커서 이동 함수
 void drawline();            // 화면 테두리 그리기
 void drawmenu();            // 메뉴 
 void drawitem();            // 아이템, 목숨 출력
+void draws();               // 상단바(단계, 점수) 출력
 
 
 /*목숨 증감 함수*/

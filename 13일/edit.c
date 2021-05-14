@@ -1,40 +1,63 @@
 #include "common.h"
 
-void drawline() // Å×µÎ¸® Ãâ·Â
+void drawline() // í…Œë‘ë¦¬ ì¶œë ¥
 {
 	int i;
 
 	gotoxy(21, 8);
-	printf("¦£");
+	printf("â”Œ");
 	for (i = 0; i < 75; i++)
-		printf("¦¡");
-	printf("¦¤");
+		printf("â”€");
+	printf("â”");
 	for (i = 9; i < 34; i++)
 	{
-		gotoxy(21, i); printf("¦¢");
-		gotoxy(97, i); printf("¦¢\n");
+		gotoxy(21, i); printf("â”‚");
+		gotoxy(97, i); printf("â”‚\n");
 	}
 	gotoxy(21, 34);
-	printf("¦¦");
+	printf("â””");
 	for (i = 0; i < 75; i++)
-		printf("¦¡");
-	printf("¦¥");
+		printf("â”€");
+	printf("â”˜");
 }
 
-void drawmenu()  // ¸Ş´º Ãâ·Â
+void drawmenu()  // ë©”ë‰´ ì¶œë ¥
 {
 	gotoxy(22, 35);
-	printf("¦¢ M °ÔÀÓ¸Ş´º¦¢ P ÀÏ½ÃÁ¤Áö¦¢ R °ÔÀÓ¹æ¹ı¦¢ L ³­ÀÌµµº¯°æ¦¢ S ½ÃÀÛÈ­¸é¦¢ Q °ÔÀÓÁ¾·á¦¢ ");
+	printf("â”‚ M ê²Œì„ë©”ë‰´â”‚ P ì¼ì‹œì •ì§€â”‚ R ê²Œì„ë°©ë²•â”‚ L ë‚œì´ë„ë³€ê²½â”‚ S ì‹œì‘í™”ë©´â”‚ Q ê²Œì„ì¢…ë£Œâ”‚ ");
 }
 
-void drawitem() // ¾ÆÀÌÅÛ, ¸ñ¼û Ãâ·Â
+void drawitem() // ì•„ì´í…œ, ëª©ìˆ¨ ì¶œë ¥
 {
 	int i;
 	extern int life, addtime, changeword;
 	gotoxy(21, 7);
-	printf("¦¢  LIFE ¦¢ ");
+	printf("â”‚  LIFE â”‚ ");
 	for (i = 0; i < life; i++)
-		printf("¢¾ ");
+		printf("â™¥ ");
 	gotoxy(60, 7);
-	printf("¦¢  ITEM ¦¢  ´Ü¾î¹Ù²Ù±â: %d  ½Ã°£Áõ°¡: %d ", changeword, addtime);
+	printf("â”‚  ITEM â”‚  ë‹¨ì–´ë°”ê¾¸ê¸°: %d  ì‹œê°„ì¦ê°€: %d ", changeword, addtime);
+}
+
+void draws(void)
+{
+	/* ìƒë‹¨ë°” í…Œë‘ë¦¬ */
+	int i;
+	gotoxy(23, 9);
+	printf("â”Œ");
+	for (i = 0; i < 71; i++)
+		printf("â”€");
+	printf("â”");
+	gotoxy(23, 10); printf("â”‚");
+	gotoxy(95, 10); printf("â”‚\n");
+	gotoxy(23, 11);
+	printf("â””");
+	for (i = 0; i < 71; i++)
+		printf("â”€");
+	printf("â”˜");
+	/* ê¸€ì”¨ */
+	gotoxy(25, 10);
+	printf("â”‚ SCHOOLâ”‚ %sí•™êµ   â”‚ GRADEâ”‚ %dí•™ë…„", "ì´ˆë“±", 1); // ë³€ìˆ˜ë¡œ ë°”ê¾¸ê¸°(í•™êµ, í•™ë…„)
+	gotoxy(76, 10);
+	printf("â”‚ SCOREâ”‚ %010d", 6000);                            // ë³€ìˆ˜ë¡œ ë°”ê¾¸ê¸°(ì ìˆ˜)
 }

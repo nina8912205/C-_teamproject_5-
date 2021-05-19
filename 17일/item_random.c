@@ -42,7 +42,7 @@ void item_random()
 	drawitem();
 	drawmenu();
 	gotoxy(36, 26);
-	printf("목숨증가: %d개, 단어바꾸기: %d개, 시간증가: %d개 획득!\n", life - 3, changeword, addtime);
+	printf("목숨증가: %d개, 단어바꾸기: %d개, 시간증가: %d개 획득!\n", life - LIFE, changeword, addtime);
 	printf("\n\n\n\n\n\n\n\n\n\n");
 	printf("                         아무키나 누르면 게임 시작! >");
 	_getch();

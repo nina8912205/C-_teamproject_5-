@@ -17,7 +17,6 @@ void elementary()
 	int num_Q = 1;              // 정오표 기록을 위한 문제 번째수  ex) 초등학교 총 18문제 => 1번 ~ 18번 문제 
 
 	extern int elementary_total_score;   // 획득한 총 누적점수 (초등학교)
-	extern int life, changeword, addtime;
 
 	get_name();       // 이름 입력받기
 	system("cls");

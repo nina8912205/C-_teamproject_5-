@@ -47,5 +47,6 @@ void game_title()
 	// 타이틀 -> 시작메뉴
 	key = _getch();
 	if (key)
-		game_start_menu();
+		system("cls");
+	game_start_menu();
 }

@@ -17,7 +17,7 @@ void elementary()
 	int num_Q = 1;              // 정오표 기록을 위한 문제 번째수  ex) 초등학교 총 18문제 => 1번 ~ 18번 문제 
 
 	extern int elementary_total_score;   // 획득한 총 누적점수 (초등학교)
-
+	extern int life, changeword, addtime;
 
 	get_name();       // 이름 입력받기
 	system("cls");
@@ -41,10 +41,9 @@ void elementary()
 		for (int j = 1; j <= 3; j++)  // 학년당 문제 개수 : 3개 
 		{
 			drawline();
-			draws('초등', i, elementary_total_score);
+			draws("초등", i, j, elementary_total_score);
 			drawitem();
 			drawmenu();
-			gotoxy(32, 15);
 
 			// 배점 부여
 			score = i * 1000;
@@ -70,62 +69,69 @@ void elementary()
 			start = clock();  // 시작 시각 기록
 			gets_s(input, SIZE);
 
-
-			// ================================================= 시간 ===================================== // 
-			// 05/17 : 제한시간 내 정답 에 따른 보너스 점수 추가 / 제한시간 내 오답에 따른 목숨 차감 / 제한시간 초과에 따른 목숨 차감
 			end = clock();  // 종료시각 기록
 
-
-
-			if (timelimit >= end - start)   // 시간 내에 입력 완료한 경우
+			// 메뉴 입력
+			if (!strcmp(input, "M"))
 			{
-				if (!strcmp(input, word))   // 근데 맞았어
+				menu();
+				system("cls");
+				j--;
+			}
+			else
+			{
+				if (timelimit >= end - start)   // 시간 내에 입력 완료한 경우
 				{
-					gotoxy(32, 21);
-					printf("정답 !! %.2f 초 남기고 성공 했습니다! 배점 획득 !! \n", TimeLeft(timelimit, start, end));
-					elementary_score_add(score);
+					if (!strcmp(input, word))    // 근데 맞았어
+					{
+						gotoxy(32, 21);
+						printf("정답 !! %.2f 초 남기고 성공 했습니다! 배점 획득 !! \n", TimeLeft(timelimit, start, end));
+						elementary_score_add(score);
 
-					//if (lefttime > 0)
-					//{
-					//	elemetary_score += score;
-					//}
+						//if (lefttime > 0)
+						//{
+						//	elemetary_score += score;
+						//}
 
-					// 남긴 점수에 해당하는 보너스 점수 추가
-					printf("%.2f",elementary_score_time(TimeBonus(start, end, timelimit)));
+						
 
-					// ===== 정오표 기록 ===
-					OX_Correct(num_Q);	// num_Q 번째 문제 가 정답이면 정오표에 1 기록
-					num_Q++;
+						// ===== 정오표 기록 ===
+						OX_Correct(num_Q);	// num_Q 번째 문제 가 정답이면 정오표에 1 기록
 
+						// 남긴 점수에 해당하는 보너스 점수 추가
+						printf("%.2f", elementary_score_time(TimeBonus(start, end, timelimit)));
+
+						num_Q++;
+
+					}
+					else if (strcmp(input, word))   // 근데 틀렸어
+					{
+
+						gotoxy(32, 21);
+						printf("땡 ! 틀렸습니다. 목숨 차감 ㅠㅠ\n");
+						decrease_life();
+
+						// ===== 정오표 기록 ===
+						OX_Wrong(num_Q);	// num_Q 번째 문제 가 오답이면 정오표에 2 기록
+
+						num_Q++;
+					}
 				}
-				else    // 근데 틀렸어
+				else    // 시간 내에 입력 못했어
 				{
 					gotoxy(32, 21);
-					printf("땡 ! 틀렸습니다. 목숨 차감 ㅠㅠ\n");
+					printf("시간초과 ! 목숨 차감 ㅠㅠ");
 					decrease_life();
 
 					// ===== 정오표 기록 ===
 					OX_Wrong(num_Q);	// num_Q 번째 문제 가 오답이면 정오표에 2 기록
 					num_Q++;
 				}
+				Sleep(2000);
+				system("cls");
 			}
-			else    // 시간 내에 입력 못했어
-			{
-				gotoxy(32, 21);
-				printf("시간초과 ! 목숨 차감 ㅠㅠ");
-				decrease_life();
-
-				// ===== 정오표 기록 ===
-				OX_Wrong(num_Q);	// num_Q 번째 문제 가 오답이면 정오표에 2 기록
-				num_Q++;
-			}
-
-
-			Sleep(2000);
-			system("cls");
+						
 		}
-
-	}
 
 	// 정오표 초기화
 	reset_OX();

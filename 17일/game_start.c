@@ -1,30 +1,32 @@
-/*game_start : °ÔÀÓ ½ÃÀÛ Àü ·¹º§¼±ÅÃ, °ÔÀÓ ¹æ¹ı ¼³¸í ÇÔ¼ö*/
+/*game_start : ê²Œì„ ì‹œì‘ ì „ ë ˆë²¨ì„ íƒ, ê²Œì„ ë°©ë²• ì„¤ëª… í•¨ìˆ˜*/
 #include "common.h"
 
 void game_start_menu()
 {
 	int key, x = 67;
-	int y = ELEMENTARY;    // Ã³À½ Ä¿¼­ À§Ä¡. ÃÊµîÇĞ±³ ·¹º§ 
+	int y = ELEMENTARY;    // ì²˜ìŒ ì»¤ì„œ ìœ„ì¹˜. ì´ˆë“±í•™êµ ë ˆë²¨ 
 
-	drawline();  // È­¸é Å×µÎ¸® ¹× ¸Ş´º Ãâ·Â
+	drawline();  // í™”ë©´ í…Œë‘ë¦¬ ë° ë©”ë‰´ ì¶œë ¥
 
-	// °ÔÀÓ ·¹º§ Ãâ·Â
+	// ê²Œì„ ë ˆë²¨ ì¶œë ¥
 	gotoxy(54, GAMESTART);
-	printf("1. °ÔÀÓ ½ÃÀÛ");
+	printf("1. ê²Œì„ ì‹œì‘");
 	gotoxy(55, ELEMENTARY);
-	printf("- ÃÊµîÇĞ±³");
+	printf("- ì´ˆë“±í•™êµ");
 	gotoxy(55, MIDDLE);
-	printf("- ÁßÇĞ±³");
+	printf("- ì¤‘í•™êµ");
 	gotoxy(55, HIGH);
-	printf("- °íµîÇĞ±³");
+	printf("- ê³ ë“±í•™êµ");
 	gotoxy(54, GAMERULES);
-	printf("2. °ÔÀÓ ¹æ¹ı");
+	printf("2. ê²Œì„ ë°©ë²•");
+	gotoxy(54, GAME_END);
+	printf("3. ê²Œì„ ì¢…ë£Œ");
 
-	// Ä¿¼­ º¯°æ
+	// ì»¤ì„œ ë³€ê²½
 	while (1)
 	{
 		gotoxy(x, y);
-		printf("¢¸");
+		printf("â—€");
 		key = _getch();
 		if (key == 224)
 		{
@@ -38,7 +40,7 @@ void game_start_menu()
 					y -= 2;
 				break;
 			case DOWN:
-				if (y < GAMERULES)
+				if (y < GAME_END)
 					y += 2;
 				break;
 			}
@@ -47,30 +49,31 @@ void game_start_menu()
 			break;
 	}
 
-	move_stage(y);  // ¼±ÅÃÇÑ ·¹º§·Î ÀÌµ¿
+	move_stage(y);  // ì„ íƒí•œ ë ˆë²¨ë¡œ ì´ë™
 }
 
-/* ¼±ÅÃÇÑ ·¹º§·Î ÀÌµ¿ ÇÔ¼ö */
+/* ì„ íƒí•œ ë ˆë²¨ë¡œ ì´ë™ í•¨ìˆ˜ */
 void move_stage(int stage)
 {
 	system("cls");
 	drawline();
-	drawmenu();
 	
 	switch (stage)
 	{
 	case ELEMENTARY:
-		elementary();  // ÃÊµîÇĞ±³ ·¹º§·Î ÀÌµ¿
+		elementary();  // ì´ˆë“±í•™êµ ë ˆë²¨ë¡œ ì´ë™
 		break;
 	case MIDDLE:
-		middle();  // ÁßÇĞ±³ ·¹º§·Î ÀÌµ¿
+		//middle();  // ì¤‘í•™êµ ë ˆë²¨ë¡œ ì´ë™
 		break;
 	case HIGH:
-		//high();  // °íµîÇĞ±³ ·¹º§·Î ÀÌµ¿
+		//high();  // ê³ ë“±í•™êµ ë ˆë²¨ë¡œ ì´ë™
 		break;
-	case GAMERULES:  // °ÔÀÓ ¹æ¹ıÀ» º¸°í ½ÍÀ» ¶§
-		game_rules();          // °ÔÀÓ ¹æ¹ı Ãâ·Â
-		game_start_menu();     // °ÔÀÓ ¹æ¹ı Ãâ·Â ÈÄ ´Ù½Ã ·¹º§ ¼±ÅÃ
+	case GAMERULES:    // ê²Œì„ ë°©ë²•ì„ ë³´ê³  ì‹¶ì„ ë•Œ
+		game_rules();          // ê²Œì„ ë°©ë²• ì¶œë ¥
+		game_start_menu();     // ê²Œì„ ë°©ë²• ì¶œë ¥ í›„ ë‹¤ì‹œ ë ˆë²¨ ì„ íƒ
 		break;
+	case GAME_END:     // ê²Œì„ ì¢…ë£Œ
+		exit(0);   		
 	}
 }

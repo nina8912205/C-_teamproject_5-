@@ -1,7 +1,7 @@
 #include "common.h"
 //3글자 영단어 출력 및 입력 받고 같은지 확인(시간 제한 기능o)
 
-void word_rand() {
+void word_rand_3() {
     srand((unsigned)time(NULL));
     char word[25][4] = {"red", "cat", "bad", "ant", "dry", "egg", "fog", "gym", "hat", "ice", "job", "kid", "low", "mom", "new", "odd", "pen", "qua", "spy", "tie", "use", "van", "woe", "yew", "zap"};
     char s1[20];    //입력받을 문자열

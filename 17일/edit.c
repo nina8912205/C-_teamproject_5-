@@ -1,64 +1,70 @@
 #include "common.h"
 
-void drawline() // Å×µÎ¸® Ãâ·Â
+void drawline() // í…Œë‘ë¦¬ ì¶œë ¥
 {
 	int i;
 
 	gotoxy(21, 8);
-	printf("¦£");
+	printf("â”Œ");
 	for (i = 0; i < 75; i++)
-		printf("¦¡");
-	printf("¦¤");
+		printf("â”€");
+	printf("â”");
 	for (i = 9; i < 34; i++)
 	{
-		gotoxy(21, i); printf("¦¢");
-		gotoxy(97, i); printf("¦¢\n");
+		gotoxy(21, i); printf("â”‚");
+		gotoxy(97, i); printf("â”‚\n");
 	}
 	gotoxy(21, 34);
-	printf("¦¦");
+	printf("â””");
 	for (i = 0; i < 75; i++)
-		printf("¦¡");
-	printf("¦¥");
+		printf("â”€");
+	printf("â”˜");
 }
 
-void drawmenu()  // ¸Ş´º Ãâ·Â
+void drawmenu()  // ë©”ë‰´ ì¶œë ¥
 {
 	gotoxy(22, 35);
-	printf("¦¢ M °ÔÀÓ¸Ş´º¦¢ P ÀÏ½ÃÁ¤Áö¦¢ R °ÔÀÓ¹æ¹ı¦¢ L ³­ÀÌµµº¯°æ¦¢ S ½ÃÀÛÈ­¸é¦¢ Q °ÔÀÓÁ¾·á¦¢ ");
+	printf("â”‚ M ê²Œì„ë©”ë‰´â”‚ P ì¼ì‹œì •ì§€â”‚ R ê²Œì„ë°©ë²•â”‚ L ë‚œì´ë„ë³€ê²½â”‚ S ì‹œì‘í™”ë©´â”‚ Q ê²Œì„ì¢…ë£Œâ”‚ ");
 }
 
-void drawitem() // ¾ÆÀÌÅÛ, ¸ñ¼û Ãâ·Â
+void drawitem() // ì•„ì´í…œ, ëª©ìˆ¨ ì¶œë ¥
 {
 	int i;
 	extern int life, addtime, changeword;
 	gotoxy(21, 7);
-	printf("¦¢  LIFE ¦¢ ");
+	printf("â”‚  LIFE â”‚ ");
 	for (i = 0; i < life; i++)
-		printf("¢¾ ");
+		printf("â™¥ ");
 	gotoxy(60, 7);
-	printf("¦¢  ITEM ¦¢  ´Ü¾î¹Ù²Ù±â: %d  ½Ã°£Áõ°¡: %d ", changeword, addtime);
+	printf("â”‚  ITEM â”‚  ë‹¨ì–´ë°”ê¾¸ê¸°: %d  ì‹œê°„ì¦ê°€: %d ", changeword, addtime);
 }
 
 
-void draws(char school,int grade, int score)
+void draws(char sch[10], int grade, int num, int score)
 {
-	/* »ó´Ü¹Ù Å×µÎ¸® */
+	/* ìƒë‹¨ë°” í…Œë‘ë¦¬ */
 	int i;
 	gotoxy(23, 9);
-	printf("¦£");
+	printf("â”Œ");
 	for (i = 0; i < 71; i++)
-		printf("¦¡");
-	printf("¦¤");
-	gotoxy(23, 10); printf("¦¢");
-	gotoxy(95, 10); printf("¦¢\n");
+		printf("â”€");
+	printf("â”");
+	gotoxy(23, 10); printf("â”‚");
+	gotoxy(95, 10); printf("â”‚\n");
 	gotoxy(23, 11);
-	printf("¦¦");
+	printf("â””");
 	for (i = 0; i < 71; i++)
-		printf("¦¡");
-	printf("¦¥");
-	/* ±Û¾¾ */
+		printf("â”€");
+	printf("â”˜");
+	
+	/* ë‚´ìš© */
+	strcpy(school, sch);
+
+	/* ê¸€ì”¨ */
 	gotoxy(25, 10);
-	printf("¦¢ SCHOOL¦¢ %cÇĞ±³   ¦¢ GRADE¦¢ %dÇĞ³â", school, grade); // º¯¼ö·Î ¹Ù²Ù±â(ÇĞ±³, ÇĞ³â)
+	printf("â”‚ SCHOOLâ”‚ %sí•™êµ", school);
+	printf("\tâ”‚ GRADEâ”‚ %dí•™ë…„", grade);
+	printf("\tâ”‚ NOâ”‚ %d ", num);
 	gotoxy(76, 10);
-	printf("¦¢ SCORE¦¢ %010d",score);                            // º¯¼ö·Î ¹Ù²Ù±â(Á¡¼ö)
+	printf("â”‚ SCOREâ”‚ %010d", score);    
 }

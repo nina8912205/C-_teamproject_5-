@@ -17,6 +17,8 @@ void elementary()
 	int num_Q = 1;              // 정오표 기록을 위한 문제 번째수  ex) 초등학교 총 18문제 => 1번 ~ 18번 문제 
 
 	extern int elementary_total_score;   // 획득한 총 누적점수 (초등학교)
+	
+	//////// 5/19 추가(현욱) - 학교 졸업/목숨 0 되고나서 그 다음 게임을 진행할 때 아이템을 초기화가 안되어 생기는 오류 수정위해 추가///////
 	extern int life, changeword, addtime;
 
 	get_name();       // 이름 입력받기
@@ -37,10 +39,10 @@ void elementary()
 	for (int i = 1; i <= 6; i++)  // 1학년 ~ 6학년
 	{
 		//목숨 검사
-		if (life == 0)
+		if (life == 0) ////////5/19 수정(현욱) - 만약 죽었다면, for문 종료 전에 아이템/목숨 관련 함수 초기화
 		{
 			life = 3, changeword = 0, addtime = 0;
-			elementary_total_score = 0;
+			elementary_total_score = 0;	//목숨 0되어 죽은것이므로 초등학교 점수는 초기화 해두었습니다. 필요하면 수정해주세요! :-)
 			break;
 		}
 		
@@ -48,7 +50,7 @@ void elementary()
 
 		for (int j = 1; j <= 3; j++)  // 학년당 문제 개수 : 3개 
 		{
-			//목숨검사
+			/////// 5/19 추가(현욱) - 목숨검사, 0이면 바로 break
 			if (life == 0)
 				break;
 			drawline();
@@ -144,7 +146,7 @@ void elementary()
 	}
 
 	
-
+/////// 5/19 수정 (현욱) - 콤보점수 계산 되기전에 정오표가 초기화되어 있길래 순서 바꾸어 주었습니다!
 	// 콤보점수 계산
 	gotoxy(32, 23);
 	printf("콤보점수 : %d 점", ComboBonus(Combo_num(18)));

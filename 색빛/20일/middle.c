@@ -2,13 +2,13 @@
 
 int m_total_score = 0; 
 
-void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
+void middle(int n) // middle(0): ì²˜ìŒì‹œì‘, middle(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int O_X[];
 	extern int life, changeword, addtime;
 	extern int time_left;
 
-	time_left = 0;  // ³²Àº½Ã°£ ÃÊ±âÈ­
+	time_left = 0;  // ë‚¨ì€ì‹œê°„ ì´ˆê¸°í™”
 
 	char word[SIZE], input[SIZE];
 	int grade, score = 0, num_Q = 1;
@@ -25,55 +25,55 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 		system("cls");
 	}
 		       
-	drawline();       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline();       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);    // ì•„ì´í…œ ë½‘ê¸°
 	system("cls");
 
 
 	for (grade = 1; grade <= 3; grade++)
 	{
-		score = grade * 3000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 3000; // í•™ë…„ ë‹¹ ë°°ì 
 
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if (life == 0)
 			break;
 
 		for (int num = 1; num <= 1; num++)
 		{
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			drawline();
-			draws("Áß", grade, num, m_score);
+			draws("ì¤‘", grade, num, m_score);
 			drawitem();
 			drawmenu();
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			gotoxy(32, 17);
-			printf("¹®Á¦ : ");
+			printf("ë¬¸ì œ : ");
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
-			case 1:                    // 1ÇĞ³â: 7±ÛÀÚ ¿µ´Ü¾î
+			case 1:                    // 1í•™ë…„: 7ê¸€ì ì˜ë‹¨ì–´
 				word_7(word);          
 				break; 
-			case 2:                    // 2ÇĞ³â: ·£´ı ¹®ÀÚ¿­(7±ÛÀÚ)
+			case 2:                    // 2í•™ë…„: ëœë¤ ë¬¸ìì—´(7ê¸€ì)
 				random_word(7, word);  
 				break;
-			case 3:                    // 3ÇĞ³â: ÂªÀº ±Û
+			case 3:                    // 3í•™ë…„: ì§§ì€ ê¸€
 				random_word(7, word);  
 				break;
 			}
 			gotoxy(70, 17);
-			printf("¹èÁ¡ : %d Á¡", score);
+			printf("ë°°ì  : %d ì ", score);
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			gotoxy(32, 19);
-			printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+			printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 			cursor(1);
 			timelimit = Mtime(grade);
 			result = game(7, timelimit, input, word);
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ
 			while (1)
 			{
 				if (result == 1)
@@ -82,21 +82,21 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 					O++;
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					drawline();
-					draws("Áß", grade, num, m_score);
+					draws("ì¤‘", grade, num, m_score);
 					drawitem();
 					drawmenu();
 					gotoxy(32, 17);
 
-					printf("¹®Á¦ : %s", word);
+					printf("ë¬¸ì œ : %s", word);
 					gotoxy(70, 17);
-					printf("¹èÁ¡ : %d Á¡", score);
+					printf("ë°°ì  : %d ì ", score);
 
 					gotoxy(32, 19);
-					printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+					printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 					timelimit = Mtime(grade);
 					result = game(7, timelimit, input, word);
 				}
@@ -104,26 +104,26 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 					break;
 			}
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[num_Q - 1] = result;
 			num_Q++;
 		}
 	}
 
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 	/*if (life > 0)
 		boss_score = m_boss();*/
 
-	// ÄŞº¸ º¸³Ê½º °è»ê
+	// ì½¤ë³´ ë³´ë„ˆìŠ¤ ê³„ì‚°
 	combo_bonus = ComboBonus(Combo_num(--num_Q));
 
-	// ½Ã°£ º¸³Ê½º °è»ê
+	// ì‹œê°„ ë³´ë„ˆìŠ¤ ê³„ì‚°
 	time_bonus = TimeBonus(time_left);
 
-	// ¼ºÀûÇ¥ Ãâ·Â
+	// ì„±ì í‘œ ì¶œë ¥
 	go = Scorecard(MIDDLE, m_score, time_bonus, combo_bonus, boss_score, num_Q, O);
 
-	// ´ÙÀ½ ´Ü°è
+	// ë‹¤ìŒ ë‹¨ê³„
 	/*if (go)
 		high(1);
 	else

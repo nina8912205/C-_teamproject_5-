@@ -1,4 +1,4 @@
-//############ »öºû - Á» ´õ ¼öÁ¤ ÇÊ¿ä
+//############ ìƒ‰ë¹› - ì¢€ ë” ìˆ˜ì • í•„ìš”
 #include "common.h"
 
 int menu()
@@ -8,11 +8,11 @@ int menu()
 
 	while (1)
 	{
-		gotoxy(38, 17);                   //############ »öºû - ¸Þ´º¸¦ ½ÇÇàÇÏ¸é Ãâ·Â±ÛÀÚ Áö¿ì±â
+		gotoxy(38, 17);                   //############ ìƒ‰ë¹› - ë©”ë‰´ë¥¼ ì‹¤í–‰í•˜ë©´ ì¶œë ¥ê¸€ìž ì§€ìš°ê¸°
 		for (int i = 1; i < 10; i++)
 			printf("  ");
 		gotoxy(23, 33);
-		printf("¡Ø ¾î¶² ±â´ÉÀ» ½ÇÇàÇÏ½Ã°Ú½À´Ï±î? ");
+		printf("â€» ì–´ë–¤ ê¸°ëŠ¥ì„ ì‹¤í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ? ");
 		gets_s(menu, 2);
 
 		if (!strcmp(menu, "P"))
@@ -34,7 +34,7 @@ int menu()
 		else if (!strcmp(menu, "L"))
 		{
 			system("cls");
-			// ·¹º§ ´Ù½Ã ¼±ÅÃ
+			// ë ˆë²¨ ë‹¤ì‹œ ì„ íƒ
 			// result = 3;
 			break;
 		}

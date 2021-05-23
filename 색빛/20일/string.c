@@ -1,25 +1,25 @@
-//string.c : ¹®ÀÚ¿­ Ãâ·Â°ú °ü·ÃµÈ ÇÔ¼ö
-//########### »öºû - ´Ü¾î ¼±¾ð ¹è¿­ÀÌ ³Ê¹« ±æ¾îÁ®¼­ °¡µ¶¼ºÀ» À§ÇØ ¿£ÅÍ ÇØ³ù½À´Ï´Ù. 
+//string.c : ë¬¸ìžì—´ ì¶œë ¥ê³¼ ê´€ë ¨ëœ í•¨ìˆ˜
+//########### ìƒ‰ë¹› - ë‹¨ì–´ ì„ ì–¸ ë°°ì—´ì´ ë„ˆë¬´ ê¸¸ì–´ì ¸ì„œ ê°€ë…ì„±ì„ ìœ„í•´ ì—”í„° í•´ë†¨ìŠµë‹ˆë‹¤. 
 #include "common.h"
 
-// ´Ü¾î Ãâ·Â(·£´ý)
+// ë‹¨ì–´ ì¶œë ¥(ëžœë¤)
 void random_word(int size, char* w)
 {
 	int i;
-	for (i = 0; i < size; i++) // ¿øÇÏ´Â ±æÀÌ¸¸Å­ ·£´ý ¹®ÀÚ¿­ »ý¼º
+	for (i = 0; i < size; i++) // ì›í•˜ëŠ” ê¸¸ì´ë§Œí¼ ëžœë¤ ë¬¸ìžì—´ ìƒì„±
 	{
-		if (rand() % 2 == 0)  // ´ë¹®ÀÚ, ¼Ò¹®ÀÚ ·£´ý ¼±ÅÃ
+		if (rand() % 2 == 0)  // ëŒ€ë¬¸ìž, ì†Œë¬¸ìž ëžœë¤ ì„ íƒ
 			w[i] = 'a' + rand() % 26;
 		else
 			w[i] = 'A' + rand() % 26;
 	}
-	w[i] = NULL; // word[size]¿¡ 0À» ÀúÀåÇÏ¸é¼­ ÇÏ³ªÀÇ ¹®ÀÚ¿­ ¿Ï¼º
+	w[i] = NULL; // word[size]ì— 0ì„ ì €ìž¥í•˜ë©´ì„œ í•˜ë‚˜ì˜ ë¬¸ìžì—´ ì™„ì„±
 
-	printf("%s\n", w); // ·£´ý ¹®ÀÚ¿­ Ãâ·Â 
+	printf("%s\n", w); // ëžœë¤ ë¬¸ìžì—´ ì¶œë ¥ 
 }
 
-// ´Ü¾î Ãâ·Â(ÀÇ¹Ì)
-void word_3(char* w)  // 3±ÛÀÚ ´Ü¾î
+// ë‹¨ì–´ ì¶œë ¥(ì˜ë¯¸)
+void word_3(char* w)  // 3ê¸€ìž ë‹¨ì–´
 {
 	int i, x;
 	char word[25][4] = { "red", "cat", "bad", "ant", "dry", "egg", "fog", "gym", "hat", "ice",
@@ -33,7 +33,7 @@ void word_3(char* w)  // 3±ÛÀÚ ´Ü¾î
 	printf("%s\n", w);
 }
 
-void word_4(char* w)  // 4±ÛÀÚ ´Ü¾î
+void word_4(char* w)  // 4ê¸€ìž ë‹¨ì–´
 {
 	int i, x;
 	char word[25][5] = { "asia", "babe", "chef", "data", "easy", "fake", "game", "hand", "icon", "joke", "mass", "king",
@@ -47,7 +47,7 @@ void word_4(char* w)  // 4±ÛÀÚ ´Ü¾î
 	printf("%s\n", w);
 }
 
-void word_5(char* w) // 5±ÛÀÚ ´Ü¾î
+void word_5(char* w) // 5ê¸€ìž ë‹¨ì–´
 {
 	int i, x;
 	char word[25][6] = { "above", "babel", "catch", "daily", "enter", "feint", "ghost", "haven", "ideal",
@@ -62,7 +62,7 @@ void word_5(char* w) // 5±ÛÀÚ ´Ü¾î
 	printf("%s\n", w);
 }
 
-void word_6(char* w) // 6±ÛÀÚ ´Ü¾î
+void word_6(char* w) // 6ê¸€ìž ë‹¨ì–´
 {
 	int i, x;
 	char word[25][7] = { "action", "ballet", "cannon", "degree", "effort", "fervor", "garlic", "happen",
@@ -77,7 +77,7 @@ void word_6(char* w) // 6±ÛÀÚ ´Ü¾î
 	printf("%s\n", w);
 }
 
-void word_7(char* w) // 7±ÛÀÚ ´Ü¾î
+void word_7(char* w) // 7ê¸€ìž ë‹¨ì–´
 {
 	int i, x;
 	char word[25][8] = { "ability", "baggage", "caution", "dynasty", "eyebrow", "foreign", "germany", "hostile",

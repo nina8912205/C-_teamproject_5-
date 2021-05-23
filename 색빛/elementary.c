@@ -1,11 +1,11 @@
-//############ »öºû - °ÅÀÇ »õ·Î ¸¸µé¾ú½À´Ï´Ù.
+//############ ìƒ‰ë¹› - ê±°ì˜ ìƒˆë¡œ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.
 #include "common.h"
 
-int e_total_score = 0; //############ »öºû -  ³Ê¹« ±æ¾î¼­ º¯¼ö ÀÌ¸§ ¹Ù²Ş && score¿¡¼­ ¿Å°Ü¿ÔÀ½.
+int e_total_score = 0; //############ ìƒ‰ë¹› -  ë„ˆë¬´ ê¸¸ì–´ì„œ ë³€ìˆ˜ ì´ë¦„ ë°”ê¿ˆ && scoreì—ì„œ ì˜®ê²¨ì™”ìŒ.
 
-int O_X[MAX_Q] = { 0 }; //############ »öºû - ÀÏ´Ü ¿©±â¼­ ¾²ÀÌ±æ·¡ ¼±¾ğÇß´Âµ¥, Áö¿ªº¯¼ö·Î ¼±¾ğÇØµµ µÉ °Å °°À½.
+int O_X[MAX_Q] = { 0 }; //############ ìƒ‰ë¹› - ì¼ë‹¨ ì—¬ê¸°ì„œ ì“°ì´ê¸¸ë˜ ì„ ì–¸í–ˆëŠ”ë°, ì§€ì—­ë³€ìˆ˜ë¡œ ì„ ì–¸í•´ë„ ë  ê±° ê°™ìŒ.
 
-void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
+void elementary(int n) // elementary(0): ì²˜ìŒì‹œì‘, elementary(1): ì²˜ìŒì•„ë‹˜.
 {	
 	extern int life, changeword, addtime;
 	extern int time_left;
@@ -13,75 +13,87 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 	char word[SIZE], input[SIZE];
 	int grade, score = 0, num_Q = 1;
 	int timelimit, result;
-	int O = 0;      //############ »öºû - Çö¿í´Ô(5/22)°Å º¸°í º¯¼ö ÀÌ¸§¸¸ ¼öÁ¤Çß½À´Ï´Ù.
-	int e_score = 0, time_bonus = 0;  // e_score: ±âº» Á¡¼ö
-	int combo_bonus = 0, boss_score = 0; // ¼ºÀûÇ¥¿¡ ±â·Ï
-	int go; // ´ÙÀ½ ´Ü°è·Î
+	int O = 0;      //############ ìƒ‰ë¹› - í˜„ìš±ë‹˜(5/22)ê±° ë³´ê³  ë³€ìˆ˜ ì´ë¦„ë§Œ ìˆ˜ì •í–ˆìŠµë‹ˆë‹¤.
+	int e_score = 0, time_bonus = 0;  // e_score: ê¸°ë³¸ ì ìˆ˜
+	int combo_bonus = 0, boss_score = 0; // ì„±ì í‘œì— ê¸°ë¡
+	int go; // ë‹¤ìŒ ë‹¨ê³„ë¡œ
 
 	if (!n)
 	{
 		drawline();
-		get_name();       // ÀÌ¸§ ¹Ş±â
+		get_name();       // ì´ë¦„ ë°›ê¸°
 		system("cls");
 	}
 	
 
-	drawline();       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline();       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(3);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(3);    // ì•„ì´í…œ ë½‘ê¸°
 	system("cls");
 
 
-	for (grade = 1; grade <= 6; grade++) //############ »öºû - ÇĞ³â º¯¼ö ¼öÁ¤ (i -> grade)
+	for (grade = 1; grade <= 6; grade++) //############ ìƒ‰ë¹› - í•™ë…„ ë³€ìˆ˜ ìˆ˜ì • (i -> grade)
 	{
-		score = grade * 1000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 1000; // í•™ë…„ ë‹¹ ë°°ì 
 
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if (life == 0)
 			break;
 
-		for (int num = 1; num <= 1; num++) //############ »öºû - ¹®Á¦ ¹øÈ£ º¯¼ö ¼öÁ¤ (j -> num)
+		for (int num = 1; num <= 1; num++) //############ ìƒ‰ë¹› - ë¬¸ì œ ë²ˆí˜¸ ë³€ìˆ˜ ìˆ˜ì • (j -> num)
 		{
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			drawline();
-			draws("ÃÊµî", grade, num, e_total_score);
+			draws("ì´ˆë“±", grade, num, e_total_score);
 			drawitem();
 			drawmenu();
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			gotoxy(32, 17);
-			printf("¹®Á¦ : ");
+			printf("ë¬¸ì œ : ");
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
 			case 1:
 			case 2:
-				random_word(grade, word); // 1~2ÇĞ³â: ·£´ı ¹®ÀÚ¿­
+				random_word(grade, word); // 1~2í•™ë…„: ëœë¤ ë¬¸ìì—´
 				break;
 			case 3:
-				word_3(word); // 3ÇĞ³â: 3±ÛÀÚ ´Ü¾î
+				if (rand() % 2 == 0)
+					word_3(word);
+				else
+					random_word(grade, word); // 3í•™ë…„: 3ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 4:
-				word_4(word); // 4ÇĞ³â: 4±ÛÀÚ ´Ü¾î
+				if (rand() % 2 == 0)
+					word_4(word);
+				else
+					random_word(grade, word); // 4í•™ë…„: 4ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 5:
-				word_5(word); // 5ÇĞ³â: 5±ÛÀÚ ´Ü¾î
+				if (rand() % 2 == 0)
+					word_5(word);
+				else
+					random_word(grade, word); // 5í•™ë…„: 5ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 6:
-				word_6(word); // 6ÇĞ³â: 6±ÛÀÚ ´Ü¾î
+				if (rand() % 2 == 0)
+					word_6(word);
+				else
+					random_word(grade, word); // 6í•™ë…„: 6ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			}
 			gotoxy(70, 17);
-			printf("¹èÁ¡ : %d Á¡", score);
+			printf("ë°°ì  : %d ì ", score);
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			gotoxy(32, 19);
-			printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+			printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 			cursor(1);
 			timelimit = Etime(grade);
 			result = game(grade, timelimit, input, word);
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½ 
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ 
 			while (1)
 			{
 				if (result == 1)
@@ -90,21 +102,21 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 					O++;
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					drawline();
-					draws("ÃÊµî", grade, num, e_score);
+					draws("ì´ˆë“±", grade, num, e_score);
 					drawitem();
 					drawmenu();
 					gotoxy(32, 17);
 
-					printf("¹®Á¦ : %s", word);
+					printf("ë¬¸ì œ : %s", word);
 					gotoxy(70, 17);
-					printf("¹èÁ¡ : %d Á¡", score);
+					printf("ë°°ì  : %d ì ", score);
 
 					gotoxy(32, 19);
-					printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+					printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 					timelimit = Etime(grade);
 					result = game(grade, timelimit, input, word);
 				}
@@ -112,33 +124,33 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 					break;
 			}
 			
-			// Á¤¿ÀÇ¥ ±â·Ï(0: ¿À´ä, 1: Á¤´ä/ ¸¸¾à(result==2)¶ó¸é ¹İº¹¹®¿¡¼­ ¸ø ³ª¿È)
+			// ì •ì˜¤í‘œ ê¸°ë¡(0: ì˜¤ë‹µ, 1: ì •ë‹µ/ ë§Œì•½(result==2)ë¼ë©´ ë°˜ë³µë¬¸ì—ì„œ ëª» ë‚˜ì˜´)
 			O_X[num_Q - 1] = result;
 			num_Q++;
 
-			// ½Ã°£ º¸³Ê½º °è»ê
+			// ì‹œê°„ ë³´ë„ˆìŠ¤ ê³„ì‚°
 			time_bonus = TimeBonus(time_left);
 
-			e_total_score = time_bonus + e_score; //############ »öºû - »ó´Ü¹Ù Á¡¼ö¸¦ À§ÇØ °è»ê
+			e_total_score = time_bonus + e_score; //############ ìƒ‰ë¹› - ìƒë‹¨ë°” ì ìˆ˜ë¥¼ ìœ„í•´ ê³„ì‚°
 		}
 		
 	}
 
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÃÊµîÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì´ˆë“±í•™êµ ë³´ìŠ¤!
 	if (life > 0)
 		boss_score = e_boss(e_score);  
 
-	// ÄŞº¸ º¸³Ê½º °è»ê
+	// ì½¤ë³´ ë³´ë„ˆìŠ¤ ê³„ì‚°
 	combo_bonus = ComboBonus(Combo_num(--num_Q));
 
-	// ½Ã°£ º¸³Ê½º °è»ê
+	// ì‹œê°„ ë³´ë„ˆìŠ¤ ê³„ì‚°
 	time_bonus = TimeBonus(time_left);
 
-	// ¼ºÀûÇ¥ Ãâ·Â
+	// ì„±ì í‘œ ì¶œë ¥
 	go = Scorecard(ELEMENTARY, e_score, time_bonus, combo_bonus, boss_score, num_Q, O);
-	e_total_score = e_score + combo_bonus + time_bonus + boss_score; //############ »öºû - ÃÖÁ¾ ¼ºÀûÇ¥¸¦ À§ÇØ °è»ê
+	e_total_score = e_score + combo_bonus + time_bonus + boss_score; //############ ìƒ‰ë¹› - ìµœì¢… ì„±ì í‘œë¥¼ ìœ„í•´ ê³„ì‚°
 
-	// ´ÙÀ½ ´Ü°è·Î
+	// ë‹¤ìŒ ë‹¨ê³„ë¡œ
 	if (go)
 		middle(1);
 }

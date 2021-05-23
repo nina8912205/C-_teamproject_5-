@@ -1,8 +1,8 @@
-//############ »öºû - ÇĞ³âº° Á¦ÇÑ½Ã°£(ÃÊ), Á¦ÇÑ½Ã°£ ¹İÈ¯ ÇÔ¼ö, ½Ã°£ º¸³Ê½º (°ÅÀÇ »õ·Î ÀÛ¼º)
+//############ ìƒ‰ë¹› - í•™ë…„ë³„ ì œí•œì‹œê°„(ì´ˆ), ì œí•œì‹œê°„ ë°˜í™˜ í•¨ìˆ˜, ì‹œê°„ ë³´ë„ˆìŠ¤ (ê±°ì˜ ìƒˆë¡œ ì‘ì„±)
 #include "common.h"
 #define BOUNS_PER_SEC 50
 
-// ÃÊµîÇĞ±³ Á¦ÇÑ½Ã°£
+// ì´ˆë“±í•™êµ ì œí•œì‹œê°„
 #define E1 10
 #define E2 9
 #define E3 8
@@ -10,17 +10,17 @@
 #define E5 6
 #define E6 5
 
-// ÁßÇĞ±³ Á¦ÇÑ½Ã°£
+// ì¤‘í•™êµ ì œí•œì‹œê°„
 #define M1 8
 #define M2 6
 #define M3 6
 
-// °íµîÇĞ±³ Á¦ÇÑ½Ã°£
+// ê³ ë“±í•™êµ ì œí•œì‹œê°„
 #define H1 9
 #define H2 9
 #define H3 9
 
-// ÃÊµîÇĞ±³ Á¦ÇÑ½Ã°£ ¹İÈ¯
+// ì´ˆë“±í•™êµ ì œí•œì‹œê°„ ë°˜í™˜
 int Etime(int level) 
 {
 	switch (level)
@@ -46,7 +46,7 @@ int Etime(int level)
 	}
 }
 
-// ÁßÇĞ±³ Á¦ÇÑ½Ã°£ ¹İÈ¯
+// ì¤‘í•™êµ ì œí•œì‹œê°„ ë°˜í™˜
 int Mtime(int level) 
 {
 	switch (level)
@@ -63,7 +63,7 @@ int Mtime(int level)
 	}
 }
 
-// °íµîÇĞ±³ Á¦ÇÑ½Ã°£ ¹İÈ¯
+// ê³ ë“±í•™êµ ì œí•œì‹œê°„ ë°˜í™˜
 int Htime(int level)
 {
 	switch (level)
@@ -80,13 +80,13 @@ int Htime(int level)
 	}
 }
 
-// ³²Àº ½Ã°£
+// ë‚¨ì€ ì‹œê°„
 int TimeLeft(int timelimit, int start, int end)
 {
 	return (timelimit - (end - start));
 }
 
-// ½Ã°£ º¸³Ê½º
+// ì‹œê°„ ë³´ë„ˆìŠ¤
 int TimeBonus(int left)
 {
 	return (left * BOUNS_PER_SEC);

@@ -5,28 +5,28 @@ int main(void)
 	extern int end_game;
 	extern int die;
 
-	system("mode con: cols=120 lines=43"); // ÄÜ¼ÖÃ¢ Å©Å° Á¶Á¤
+	system("mode con: cols=120 lines=43"); // ì½˜ì†”ì°½ í¬í‚¤ ì¡°ì •
 	srand((unsigned)time(NULL));
 	
 	while (1)
 	{
 		cursor(0);
-		game_title();                 // °ÔÀÓ Å¸ÀÌÆ²
+		game_title();                 // ê²Œì„ íƒ€ì´í‹€
 
 		while (1)
 		{
-			game_start_menu();        // °ÔÀÓ ½ÃÀÛ ¹× ÁøÇà
+			game_start_menu();        // ê²Œì„ ì‹œì‘ ë° ì§„í–‰
 
-			if (end_game == 1)        //°ÔÀÓ Á¾·á °ü·Ã - ¸ŞÀÎ ¸Ş´º¿¡¼­ °ÔÀÓ Á¾·á ¼±ÅÃ½Ã °ÔÀÓ ÇÁ·Î±×·¥ Á¾·á//
+			if (end_game == 1)        //ê²Œì„ ì¢…ë£Œ ê´€ë ¨ - ë©”ì¸ ë©”ë‰´ì—ì„œ ê²Œì„ ì¢…ë£Œ ì„ íƒì‹œ ê²Œì„ í”„ë¡œê·¸ë¨ ì¢…ë£Œ//
 				break;
-			if (die == 1)             //¸ñ¼û 0 µÇ¾î Á×¾úÀ» °æ¿ì - Å¸ÀÌÆ² Ãâ·ÂÀ¸·Î µ¹¾Æ°¨.
+			if (die == 1)             //ëª©ìˆ¨ 0 ë˜ì–´ ì£½ì—ˆì„ ê²½ìš° - íƒ€ì´í‹€ ì¶œë ¥ìœ¼ë¡œ ëŒì•„ê°.
 			{
 				die = 0;
 				break;
 			}
 		}
 
-		if (end_game == 1) //¸¸¾à ¸ŞÀÎ ¸Ş´º¿¡¼­ 3. °ÔÀÓÁ¾·á ¼±ÅÃ½Ã, °ÔÀÓ ÇÁ·Î±×·¥ ¿ÏÀüÈ÷ 
+		if (end_game == 1) //ë§Œì•½ ë©”ì¸ ë©”ë‰´ì—ì„œ 3. ê²Œì„ì¢…ë£Œ ì„ íƒì‹œ, ê²Œì„ í”„ë¡œê·¸ë¨ ì™„ì „íˆ 
 			break;
 	}
 
@@ -39,7 +39,7 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
 }
 
-void cursor(int n) //############ »öºû - Ä¿¼­ º¸ÀÌ±âcursor(1) & ¼û±â±âcosor(0)
+void cursor(int n) //############ ìƒ‰ë¹› - ì»¤ì„œ ë³´ì´ê¸°cursor(1) & ìˆ¨ê¸°ê¸°cosor(0)
 {
 	HANDLE hConsole;
 	CONSOLE_CURSOR_INFO ConsoleCursor;

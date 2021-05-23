@@ -1,26 +1,26 @@
-// game.c : °ÔÀÓ ÁøÇà°ú °ü·ÃµÈ ÇÔ¼ö
+// game.c : ê²Œì„ ì§„í–‰ê³¼ ê´€ë ¨ëœ í•¨ìˆ˜
 #include "common.h"
 
-int time_left = 0; // ³²Àº ½Ã°£ ÀúÀå º¯¼ö
+int time_left = 0; // ë‚¨ì€ ì‹œê°„ ì €ì¥ ë³€ìˆ˜
 
-// ´Ü¾î ÀÔ·Â ¹Ş±â & Á¦ÇÑ ½Ã°£ÀÌ Áö³ª¸é ³Ñ¾î°¡±â -> °á°ú ¹İÈ¯(0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º ¼±ÅÃ)
+// ë‹¨ì–´ ì…ë ¥ ë°›ê¸° & ì œí•œ ì‹œê°„ì´ ì§€ë‚˜ë©´ ë„˜ì–´ê°€ê¸° -> ê²°ê³¼ ë°˜í™˜(0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ ì„ íƒ)
 int game(int size, int timelimit, char* input, char* word)
 {
 	char ch;
 	int j = 0, start, end, result;
 
-	start = time(0);   // ½ÃÀÛ ½Ã°£
+	start = time(0);   // ì‹œì‘ ì‹œê°„
 
 	while (1)
 	{
-		if (time(0) == start + timelimit)   // ÇĞ³âº° Á¦ÇÑ ½Ã°£À» ÁöÄ×´Â°¡?
+		if (time(0) == start + timelimit)   // í•™ë…„ë³„ ì œí•œ ì‹œê°„ì„ ì§€ì¼°ëŠ”ê°€?
 		{
 			result = 0;
 			cursor(0);
 			gotoxy(32, 21);
 			printf("TIME OVER!");
 			gotoxy(32, 22);
-			printf("¸ñ¼ûÀÌ ÇÏ³ª Â÷°¨µË´Ï´Ù");
+			printf("ëª©ìˆ¨ì´ í•˜ë‚˜ ì°¨ê°ë©ë‹ˆë‹¤");
 
 			decrease_life();
 			
@@ -29,10 +29,10 @@ int game(int size, int timelimit, char* input, char* word)
 			break;
 		}
 
-		if (_kbhit()) // »ç¿ëÀÚ°¡ Å°¸¦ ´­·¶´Â°¡?
+		if (_kbhit()) // ì‚¬ìš©ìê°€ í‚¤ë¥¼ ëˆŒë €ëŠ”ê°€?
 		{
 			ch = _getch();
-			if (ch == ESC) // ESC´©¸£¸é ¸Ş´º·Î 
+			if (ch == ESC) // ESCëˆ„ë¥´ë©´ ë©”ë‰´ë¡œ 
 			{
 				result = menu();				
 				break;
@@ -45,7 +45,7 @@ int game(int size, int timelimit, char* input, char* word)
 			}
 			if (ch == BACKSPACE)
 			{
-				printf("\b \b"); // ÀÔ·ÂÇÑ°Å Áö¿ì±â
+				printf("\b \b"); // ì…ë ¥í•œê±° ì§€ìš°ê¸°
 				if (j > 0)
 				{
 					input[j] = NULL;
@@ -54,10 +54,10 @@ int game(int size, int timelimit, char* input, char* word)
 			}
 		}
 
-		if (j >= size) // ¹®ÀÚ¿­ÀÇ ±æÀÌ ³ÑÀ¸¸é	
+		if (j >= size) // ë¬¸ìì—´ì˜ ê¸¸ì´ ë„˜ìœ¼ë©´	
 		{
 			input[size] = NULL;
-			if (!strcmp(word, input)) // Á¤´ä
+			if (!strcmp(word, input)) // ì •ë‹µ
 			{
 				result = 1;
 				cursor(0);
@@ -65,18 +65,18 @@ int game(int size, int timelimit, char* input, char* word)
 				printf("PERFECT!\n");
 				gotoxy(32, 22);
 				end = time(0);
-				time_left += TimeLeft(timelimit, start, end); // ³²¾ÆÀÖ´Â ½Ã°£ ±â·Ï
+				time_left += TimeLeft(timelimit, start, end); // ë‚¨ì•„ìˆëŠ” ì‹œê°„ ê¸°ë¡
 				gotoxy(76, 12);
-				printf("+ ½Ã°£ º¸³Ê½º( %d ÃÊ)", TimeLeft(timelimit, start, end)); //############ »öºû - °­ÀÇ ³»¿ëÀ¸·Î ½Ã°£ Àç´Â°Ô intÇüÀÌ¶ó ÃÊÃâ·ÂÀ» Á¤¼ö·Î Çß½À´Ï´Ù.
+				printf("+ ì‹œê°„ ë³´ë„ˆìŠ¤( %d ì´ˆ)", TimeLeft(timelimit, start, end)); //############ ìƒ‰ë¹› - ê°•ì˜ ë‚´ìš©ìœ¼ë¡œ ì‹œê°„ ì¬ëŠ”ê²Œ intí˜•ì´ë¼ ì´ˆì¶œë ¥ì„ ì •ìˆ˜ë¡œ í–ˆìŠµë‹ˆë‹¤.
 			}
-			else // ¿À´ä
+			else // ì˜¤ë‹µ
 			{
 				result = 0;
 				cursor(0);
 				gotoxy(32, 21);
-				printf("¶¯!\n");
+				printf("ë•¡!\n");
 				gotoxy(32, 22);
-				printf("¸ñ¼ûÀÌ ÇÏ³ª Â÷°¨µË´Ï´Ù.");
+				printf("ëª©ìˆ¨ì´ í•˜ë‚˜ ì°¨ê°ë©ë‹ˆë‹¤.");
 				decrease_life();
 			}
 			Sleep(1500);

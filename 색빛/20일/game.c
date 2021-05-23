@@ -86,3 +86,4 @@ int game(int size, int timelimit, char* input, char* word)
 	}
 	return result;
 }
+

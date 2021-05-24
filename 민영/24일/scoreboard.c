@@ -1,15 +1,15 @@
-//############ ªˆ∫˚ - «ˆøÌ¥‘(21¿œ)¿Ã ø√∏ÆΩ≈∞≈ ¡ª ºˆ¡§«ﬂΩ¿¥œ¥Ÿ.
+//############ ÏÉâÎπõ - ÌòÑÏö±Îãò(21Ïùº)Ïù¥ Ïò¨Î¶¨Ïã†Í±∞ Ï¢Ä ÏàòÏ†ïÌñàÏäµÎãàÎã§.
 #include "common.h"
 
-//√÷¡æ ¡æ∑·Ω√ º∫¿˚«•
-////############ ªˆ∫˚ - ¿Ã∏ß¿ª ¿¸ø™∫Øºˆ∑Œ πŸ≤„º≠ ¿Œºˆ « ø‰X, ¿Œºˆ ¿Ã∏ß ≥ π´ ±ÊæÓº≠ ºˆ¡§
+//ÏµúÏ¢Ö Ï¢ÖÎ£åÏãú ÏÑ±Ï†ÅÌëú
+////############ ÏÉâÎπõ - Ïù¥Î¶ÑÏùÑ Ï†ÑÏó≠Î≥ÄÏàòÎ°ú Î∞îÍøîÏÑú Ïù∏Ïàò ÌïÑÏöîX, Ïù∏Ïàò Ïù¥Î¶Ñ ÎÑàÎ¨¥ Í∏∏Ïñ¥ÏÑú ÏàòÏ†ï
 void Final_Scorecard(int elementary, int middle, int high)
 {
-	extern char name[]; //############ ªˆ∫˚ - ¿Ã∏ß(¿¸ø™∫Øºˆ)
+	extern char name[]; //############ ÏÉâÎπõ - Ïù¥Î¶Ñ(Ï†ÑÏó≠Î≥ÄÏàò)
 	int grade;
-	int scoresum = elementary + middle + high; ////############ ªˆ∫˚ - scoresum∫∏¥‹ total_score∞° ¥ı ¡¡¿ª∞≈∞∞Ω¿¥œ¥Ÿ.
+	int scoresum = elementary + middle + high; ////############ ÏÉâÎπõ - scoresumÎ≥¥Îã® total_scoreÍ∞Ä Îçî Ï¢ãÏùÑÍ±∞Í∞ôÏäµÎãàÎã§.
 
-	//µÓ±ﬁ ªÍ¡§-√ﬂ»ƒ ¡∂¡§«œ±‚
+	//Îì±Í∏â ÏÇ∞Ï†ï-Ï∂îÌõÑ Ï°∞Ï†ïÌïòÍ∏∞
 	if (scoresum < 10000)
 		grade = 9;
 	else if (10000 <= scoresum && scoresum < 20000)
@@ -29,25 +29,25 @@ void Final_Scorecard(int elementary, int middle, int high)
 	else
 		grade = 1;
 
-	printf("                     º∫¿˚«•                     \n");
-	printf("                                    ¿Ã∏ß:	%s  \n", name);//¿Ã∏ß √‚∑¬
+	printf("                     ÏÑ±Ï†ÅÌëú                     \n");
+	printf("                                    Ïù¥Î¶Ñ:	%s  \n", name);//Ïù¥Î¶Ñ Ï∂úÎ†•
 	printf("                                                \n");
-	printf("             √ µÓ«–±≥:  %d¡°\n\n", elementary);
-	printf("             ¡ﬂ«–±≥  :  %d¡°\n\n", middle);
-	printf("             ∞ÌµÓ«–±≥:  %d¡°\n\n", high);
-	printf("             √—¡°    :  %d¡°\n\n", elementary + middle + high);
-	printf("             √÷¡æ µÓ±ﬁ: %dµÓ±ﬁ", grade);
+	printf("             Ï¥àÎì±ÌïôÍµê:  %dÏ†ê\n\n", elementary);
+	printf("             Ï§ëÌïôÍµê  :  %dÏ†ê\n\n", middle);
+	printf("             Í≥†Îì±ÌïôÍµê:  %dÏ†ê\n\n", high);
+	printf("             Ï¥ùÏ†ê    :  %dÏ†ê\n\n", elementary + middle + high);
+	printf("             ÏµúÏ¢Ö Îì±Í∏â: %dÎì±Í∏â", grade);
 
 }
 
-/*############ ªˆ∫˚
- - ¿Ã∏ß¿∫ ¿¸ø™∫Øºˆ∑Œ º±æ«ﬂ±‚ ∂ßπÆø° ª∞¿Ω.
- - ƒﬁ∫∏ ¡°ºˆ∏¶ ≈Î«ÿº≠ ƒﬁ∫∏ ∞≥ºˆ∏¶ æÀ ºˆ ¿÷±‚ ∂ßπÆø° ƒﬁ∫∏ ∞≥ºˆ∏¶ ¿Œºˆø°º≠ ª≠.
- - char level -> int level (¿ÃπÃ ±‚»£ªÛºˆ∑Œ º±æµ»∞‘ ¿÷æÓº≠ ±◊∞≈ æ≤∑¡∞Ì πŸ≤ﬁ)
- - ∫∏Ω∫ ¡°ºˆ √ﬂ∞°
- - ¥Ÿ¿Ω ¥‹∞Ë∑Œ ≥—æÓ∞°¥¬ æÀ∞Ì∏Æ¡Ú¿Ã √Êµπ«— ∞Õ ∞∞¿Ω.(¡¶∞° «ˆøÌ¥‘ game_start.c∏¶ ¡÷ºÆ ¥ﬁ∂ß∫¡º≠..)
- - ¡ª ¥ı ∞£¥‹«œ∞‘ ƒ⁄µÂ ºˆ¡§. && º∫¿˚«• ∑π¿Ãæ∆øÙ ºˆ¡§
- - ƒÌ æÛ±º √ﬂ∞°
+/*############ ÏÉâÎπõ
+ - Ïù¥Î¶ÑÏùÄ Ï†ÑÏó≠Î≥ÄÏàòÎ°ú ÏÑ†Ïñ∏ÌñàÍ∏∞ ÎïåÎ¨∏Ïóê Î∫êÏùå.
+ - ÏΩ§Î≥¥ Ï†êÏàòÎ•º ÌÜµÌï¥ÏÑú ÏΩ§Î≥¥ Í∞úÏàòÎ•º Ïïå Ïàò ÏûàÍ∏∞ ÎïåÎ¨∏Ïóê ÏΩ§Î≥¥ Í∞úÏàòÎ•º Ïù∏ÏàòÏóêÏÑú Î∫å.
+ - char level -> int level (Ïù¥ÎØ∏ Í∏∞Ìò∏ÏÉÅÏàòÎ°ú ÏÑ†Ïñ∏ÎêúÍ≤å ÏûàÏñ¥ÏÑú Í∑∏Í±∞ Ïì∞Î†§Í≥† Î∞îÍøà)
+ - Î≥¥Ïä§ Ï†êÏàò Ï∂îÍ∞Ä
+ - Îã§Ïùå Îã®Í≥ÑÎ°ú ÎÑòÏñ¥Í∞ÄÎäî ÏïåÍ≥†Î¶¨Ï¶òÏù¥ Ï∂©ÎèåÌïú Í≤É Í∞ôÏùå.(Ï†úÍ∞Ä ÌòÑÏö±Îãò game_start.cÎ•º Ï£ºÏÑù Îã¨ÎïåÎ¥êÏÑú..)
+ - Ï¢Ä Îçî Í∞ÑÎã®ÌïòÍ≤å ÏΩîÎìú ÏàòÏ†ï. && ÏÑ±Ï†ÅÌëú Î†àÏù¥ÏïÑÏõÉ ÏàòÏ†ï
+ - Ïø† ÏñºÍµ¥ Ï∂îÍ∞Ä
 */
 int Scorecard(int level, int score, int time, int combo, int boss, int Q_solved, int Q_correct)
 {
@@ -64,15 +64,15 @@ int Scorecard(int level, int score, int time, int combo, int boss, int Q_solved,
 	switch (level)
 	{
 	case ELEMENTARY:
-		strcpy(school, "√ µÓ");
-		strcpy(next, "¡ﬂ");
+		strcpy(school, "Ï¥àÎì±");
+		strcpy(next, "Ï§ë");
 		break;
 	case MIDDLE:
-		strcpy(school, "¡ﬂ");
-		strcpy(next, "∞ÌµÓ");
+		strcpy(school, "Ï§ë");
+		strcpy(next, "Í≥†Îì±");
 		break;
 	case HIGH:
-		strcpy(school, "∞ÌµÓ");
+		strcpy(school, "Í≥†Îì±");
 		break;
 	}
 
@@ -81,47 +81,47 @@ int Scorecard(int level, int score, int time, int combo, int boss, int Q_solved,
 		happyKU();
 		drawline();
 		gotoxy(45, 12);
-		printf("! %s«–±≥ ¡πæ˜¿ª √‡«œ«’¥œ¥Ÿ ! \n\n", school);
+		printf("! %sÌïôÍµê Ï°∏ÏóÖÏùÑ Ï∂ïÌïòÌï©ÎãàÎã§ ! \n\n", school);
 	}
 	else
 	{
 		sadKU();
 		drawline();
 		gotoxy(45, 12);
-		printf(" --  ¡∂±› ¥ı ø¨Ω¿«ÿ∫∏æ∆ø‰!  --");
+		printf(" --  Ï°∞Í∏à Îçî Ïó∞ÏäµÌï¥Î≥¥ÏïÑÏöî!  --");
 	}
 
 
 	gotoxy(75, 14);
-	printf("¿Ã∏ß: %s\n", name);//¿Ã∏ß √‚∑¬
+	printf("Ïù¥Î¶Ñ: %s\n", name);//Ïù¥Î¶Ñ Ï∂úÎ†•
 	gotoxy(48, 16);
-	printf("%d πÆ¡¶¡ﬂ %d πÆ¡¶ ¡§¥‰!", Q_solved, Q_correct);
+	printf("%d Î¨∏Ï†úÏ§ë %d Î¨∏Ï†ú Ï†ïÎãµ!", Q_solved, Q_correct);
 	gotoxy(48, 18);
-	printf("»πµÊ«— ¡°ºˆ  :  %5d ¡°", score);
+	printf("ÌöçÎìùÌïú Ï†êÏàò  :  %5d Ï†ê", score);
 	gotoxy(48, 20);
-	printf("Ω√∞£√ﬂ∞° ¡°ºˆ:  %5d ¡°", time);
+	printf("ÏãúÍ∞ÑÏ∂îÍ∞Ä Ï†êÏàò:  %5d Ï†ê", time);
 	gotoxy(48, 22);
-	printf("ƒﬁ∫∏¡°ºˆ     :  %5d ¡° (%d COMBO)", combo, combo / BonusPerCombo);
+	printf("ÏΩ§Î≥¥Ï†êÏàò     :  %5d Ï†ê (%d COMBO)", combo, combo / BonusPerCombo);
 	gotoxy(48, 24);
-	printf("∫∏Ω∫¡°ºˆ     :  %5d ¡°", boss);
+	printf("Î≥¥Ïä§Ï†êÏàò     :  %5d Ï†ê", boss);
 	gotoxy(34, 26);
 	printf("----------------------------------------------------");
 	gotoxy(48, 28);
-	printf("√—¡°         :  %5d ¡°", score + time + combo + boss);
+	printf("Ï¥ùÏ†ê         :  %5d Ï†ê", score + time + combo + boss);
 
 	gotoxy(25, 31);
 	if (level != HIGH && life != 0) {
-		printf("[ %s«–±≥∑Œ ¡¯«‡«œ∑¡∏È g, ∏ﬁ¿Œ ∏ﬁ¥∫∑Œ µπæ∆∞°Ω√∑¡∏È ESC≈∞∏¶ ¥≠∑Ø¡÷ººø‰.]", next);
+		printf("[ %sÌïôÍµêÎ°ú ÏßÑÌñâÌïòÎ†§Î©¥ g, Î©îÏù∏ Î©îÎâ¥Î°ú ÎèåÏïÑÍ∞ÄÏãúÎ†§Î©¥ ESCÌÇ§Î•º ÎàåÎü¨Ï£ºÏÑ∏Ïöî.]", next);
 		gotoxy(25, 32);
-		printf(" æ∆π´≈∞µµ ¥©∏£¡ˆ æ ¿∏∏È ¿⁄µø¿∏∑Œ %s«–±≥∑Œ ¿‘«–«’¥œ¥Ÿ. [8√ ]", next);
+		printf(" ÏïÑÎ¨¥ÌÇ§ÎèÑ ÎàÑÎ•¥ÏßÄ ÏïäÏúºÎ©¥ ÏûêÎèôÏúºÎ°ú %sÌïôÍµêÎ°ú ÏûÖÌïôÌï©ÎãàÎã§. [8Ï¥à]", next);
 		t1 = clock(0);
 	}
 	else
-		printf("[ ∏ﬁ¿Œ ∏ﬁ¥∫∑Œ µπæ∆∞°Ω√∑¡∏È ESC≈∞∏¶ ¥≠∑Ø¡÷ººø‰.]");
+		printf("[ Î©îÏù∏ Î©îÎâ¥Î°ú ÎèåÏïÑÍ∞ÄÏãúÎ†§Î©¥ ESCÌÇ§Î•º ÎàåÎü¨Ï£ºÏÑ∏Ïöî.]");
 
 	while (1)
 	{
-		do {	//	5/23 πŒøµ Ω√∞£ 8√  ¡ˆ≥™∏È ¿⁄µø ¿Ãµø ±‚¥… 
+		do {	// **********************************5/23 ÎØºÏòÅ ÏãúÍ∞Ñ 8Ï¥à ÏßÄÎÇòÎ©¥ ÏûêÎèô Ïù¥Îèô Í∏∞Îä• 
 			t2 = clock(0);
 			if (difftime(t2, t1) > 8000) {
 				return 1;
@@ -149,31 +149,31 @@ void sadKU()
 {
 	system("cls");
 	gotoxy(0, 9);
-	printf("\t\t\t\t            °·°·                      °·°·\n");
-	printf("\t\t\t\t            °·  °·    °·°·°·°·°·    °·  °·\n");
-	printf("\t\t\t\t            °·    °·°·          °·°·    °·\n");
-	printf("\t\t\t\t            °·  °·°·              °·°·  °·\n");
-	printf("\t\t\t\t        °·°·°·°·        °·    °·      °·°·°·°·\n");
-	printf("\t\t\t\t    °·°·  °·            °·    °·          °·  °·°·\n");
-	printf("\t\t\t\t  °·      °·      °·      °·  °·  °·      °·      °·\n");
-	printf("\t\t\t\t°·      °·      °·          °·      °·      °·      °·\n");
-	printf("\t\t\t\t°·      °·                                  °·      °·\n");
-	printf("\t\t\t\t  °·°·°·                                      °·°·°·\n");
-	printf("\t\t\t\t      °·      °·°·°·°·°·      °·°·°·°·°·      °·\n");
-	printf("\t\t\t\t      °·        °·  °·          °·  °·        °·\n");
-	printf("\t\t\t\t    °·                  °·  °·                  °·\n");
-	printf("\t\t\t\t    °·            °·°·°·°·°·°·°·°·°·            °·\n");
-	printf("\t\t\t\t    °·        °·°·°·              °·°·°·        °·\n");
-	printf("\t\t\t\t    °·    °·°·          °·°·°·          °·°·    °·\n");
-	printf("\t\t\t\t    °·  °·            °·      °·            °·  °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t        °·                                  °·\n");
-	printf("\t\t\t\t        °·°·                              °·°·\n");
-	printf("\t\t\t\t            °·°·                      °·°·\n");
-	printf("\t\t\t\t              °·°·                  °·°·\n");
-	printf("\t\t\t\t                  °·°·°·°·°·°·°·°·°·\n");
+	printf("\t\t\t\t            ‚ñ†‚ñ†                      ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†  ‚ñ†    ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†    ‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†    ‚ñ†‚ñ†          ‚ñ†‚ñ†    ‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†  ‚ñ†‚ñ†              ‚ñ†‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†‚ñ†‚ñ†‚ñ†        ‚ñ†    ‚ñ†      ‚ñ†‚ñ†‚ñ†‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†‚ñ†  ‚ñ†            ‚ñ†    ‚ñ†          ‚ñ†  ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t  ‚ñ†      ‚ñ†      ‚ñ†      ‚ñ†  ‚ñ†  ‚ñ†      ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t‚ñ†      ‚ñ†      ‚ñ†          ‚ñ†      ‚ñ†      ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t‚ñ†      ‚ñ†                                  ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t  ‚ñ†‚ñ†‚ñ†                                      ‚ñ†‚ñ†‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†      ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†      ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†        ‚ñ†  ‚ñ†          ‚ñ†  ‚ñ†        ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†                  ‚ñ†  ‚ñ†                  ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†            ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†            ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†        ‚ñ†‚ñ†‚ñ†              ‚ñ†‚ñ†‚ñ†        ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†    ‚ñ†‚ñ†          ‚ñ†‚ñ†‚ñ†          ‚ñ†‚ñ†    ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†  ‚ñ†            ‚ñ†      ‚ñ†            ‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†                                  ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†‚ñ†                              ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†‚ñ†                      ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t              ‚ñ†‚ñ†                  ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t                  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†\n");
 	Sleep(2000);
 	system("cls");
 }
@@ -182,31 +182,31 @@ void happyKU()
 {
 	system("cls");
 	gotoxy(0, 9);
-	printf("\t\t\t\t            °·°·                      °·°·\n");
-	printf("\t\t\t\t            °·  °·    °·°·°·°·°·    °·  °·\n");
-	printf("\t\t\t\t            °·    °·°·          °·°·    °·\n");
-	printf("\t\t\t\t            °·  °·°·              °·°·  °·\n");
-	printf("\t\t\t\t        °·°·°·°·        °·    °·      °·°·°·°·\n");
-	printf("\t\t\t\t    °·°·  °·            °·    °·          °·  °·°·\n");
-	printf("\t\t\t\t  °·      °·      °·      °·  °·  °·      °·      °·\n");
-	printf("\t\t\t\t°·      °·      °·          °·      °·      °·      °·\n");
-	printf("\t\t\t\t°·      °·                                  °·      °·\n");
-	printf("\t\t\t\t  °·°·°·          °·              °·            °·°·°·\n");
-	printf("\t\t\t\t      °·        °·  °·          °·  °·        °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t    °·                  °·  °·                  °·\n");
-	printf("\t\t\t\t    °·            °·°·°·°·°·°·°·°·°·            °·\n");
-	printf("\t\t\t\t    °·        °·°·°·              °·°·°·        °·\n");
-	printf("\t\t\t\t    °·    °·°·        °·      °·        °·°·    °·\n");
-	printf("\t\t\t\t    °·  °·              °·°·°·              °·  °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t      °·                                      °·\n");
-	printf("\t\t\t\t        °·                                  °·\n");
-	printf("\t\t\t\t        °·°·                              °·°·\n");
-	printf("\t\t\t\t            °·°·                      °·°·\n");
-	printf("\t\t\t\t              °·°·                  °·°·\n");
-	printf("\t\t\t\t                  °·°·°·°·°·°·°·°·°·\n");
+	printf("\t\t\t\t            ‚ñ†‚ñ†                      ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†  ‚ñ†    ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†    ‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†    ‚ñ†‚ñ†          ‚ñ†‚ñ†    ‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†  ‚ñ†‚ñ†              ‚ñ†‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†‚ñ†‚ñ†‚ñ†        ‚ñ†    ‚ñ†      ‚ñ†‚ñ†‚ñ†‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†‚ñ†  ‚ñ†            ‚ñ†    ‚ñ†          ‚ñ†  ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t  ‚ñ†      ‚ñ†      ‚ñ†      ‚ñ†  ‚ñ†  ‚ñ†      ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t‚ñ†      ‚ñ†      ‚ñ†          ‚ñ†      ‚ñ†      ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t‚ñ†      ‚ñ†                                  ‚ñ†      ‚ñ†\n");
+	printf("\t\t\t\t  ‚ñ†‚ñ†‚ñ†          ‚ñ†              ‚ñ†            ‚ñ†‚ñ†‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†        ‚ñ†  ‚ñ†          ‚ñ†  ‚ñ†        ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†                  ‚ñ†  ‚ñ†                  ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†            ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†            ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†        ‚ñ†‚ñ†‚ñ†              ‚ñ†‚ñ†‚ñ†        ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†    ‚ñ†‚ñ†        ‚ñ†      ‚ñ†        ‚ñ†‚ñ†    ‚ñ†\n");
+	printf("\t\t\t\t    ‚ñ†  ‚ñ†              ‚ñ†‚ñ†‚ñ†              ‚ñ†  ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t      ‚ñ†                                      ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†                                  ‚ñ†\n");
+	printf("\t\t\t\t        ‚ñ†‚ñ†                              ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t            ‚ñ†‚ñ†                      ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t              ‚ñ†‚ñ†                  ‚ñ†‚ñ†\n");
+	printf("\t\t\t\t                  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†\n");
 	Sleep(2000);
 	system("cls");
 }

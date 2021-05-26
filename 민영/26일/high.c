@@ -43,7 +43,7 @@ void high(int n) // high(0): 처음시작, high(1): 처음아님.
 		{
 			// 레이아웃
 			drawline();
-			draws("고", grade, num, h_score);
+			draws("고등", grade, num, h_score);
 			drawitem();
 			drawmenu();
 
@@ -86,7 +86,7 @@ void high(int n) // high(0): 처음시작, high(1): 처음아님.
 				{
 					// 문제 다시 출력
 					drawline();
-					draws("고", grade, num, h_score);
+					draws("고등", grade, num, h_score);
 					drawitem();
 					drawmenu();
 					gotoxy(30, 17);

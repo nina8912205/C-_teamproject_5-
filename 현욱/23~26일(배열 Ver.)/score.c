@@ -1,66 +1,40 @@
-/*Á¡¼ö °è»ê*/
+/*ì ìˆ˜ ê³„ì‚°*/
 #include "common.h"
 
-///****** 5/21(Çö¿í) - º¯¼ö ¼öÁ¤ - ÃÑ Á¡¼ö, ¹èÁ¡ ´©Àû Á¡¼ö, ½Ã°£º¸³Ê½º, ÄŞº¸º¸³Ê½º ÀúÀå º¯¼ö Ãß°¡
-///****** 5/24(Çö¿í) - ¼ºÀûÇ¥ Ãâ·Â¿¡ ÇÊ¿äÇÑ Á¡¼öµé Àü¿ªº¯¼ö·Î ¼±¾ğ, Á¡¼ö Ã³¸® ¾Ë°í¸®Áò ÀÏ°ü¼ºÀÖ°Ô ¼öÁ¤
-//Á¡¼ö ´©Àû/»ó´Ü Ç¥½Ã À§ÇÑ º¯¼ö
+///****** 5/21(í˜„ìš±) - ë³€ìˆ˜ ìˆ˜ì • - ì´ ì ìˆ˜, ë°°ì  ëˆ„ì  ì ìˆ˜, ì‹œê°„ë³´ë„ˆìŠ¤, ì½¤ë³´ë³´ë„ˆìŠ¤ ì €ì¥ ë³€ìˆ˜ ì¶”ê°€
+///****** 5/24(í˜„ìš±) - ì„±ì í‘œ ì¶œë ¥ì— í•„ìš”í•œ ì ìˆ˜ë“¤ ì „ì—­ë³€ìˆ˜ë¡œ ì„ ì–¸, ì ìˆ˜ ì²˜ë¦¬ ì•Œê³ ë¦¬ì¦˜ ì¼ê´€ì„±ìˆê²Œ ìˆ˜ì •
+//ì ìˆ˜ ëˆ„ì /ìƒë‹¨ í‘œì‹œ ìœ„í•œ ë³€ìˆ˜
 int TotalScore;
 
-//ÃÊµîÇĞ±³
+//ì´ˆë“±í•™êµ
 
 int e_score[8] = { 0 };
 int m_score[8] = { 0 };
 int h_score[8] = { 0 };
 
-int e_total_score; // ÃÑ Á¡¼ö
-int e_correct_score;// ¹®Á¦ ¸Â¾Æ¼­ ¹èÁ¡ ´©ÀûµÈ Á¡¼ö
-int e_time_bonus;	//½Ã°£ º¸³Ê½º
-int e_combo_bonus;	//ÄŞº¸ º¸³Ê½º
-int eboss_total_score;
-int eboss_correct_score;
-int eboss_time_bonus;
-int eboss_combo_bonus;
-//ÁßÇĞ±³
-int m_total_score; // ÃÑ Á¡¼ö
-int m_correct_score;// ¹®Á¦ ¸Â¾Æ¼­ ¹èÁ¡ ´©ÀûµÈ Á¡¼ö
-int m_time_bonus;	//½Ã°£ º¸³Ê½º
-int m_combo_bonus;	//ÄŞº¸ º¸³Ê½º
-int mboss_total_score;
-int mboss_correct_score;
-int mboss_time_bonus;
-int mboss_combo_bonus;
 
-////////ÁßÇĞ±³ º¸½º¿¡ ¼±¾ğÇØÁÖ±â!
+
+////////ì¤‘í•™êµ ë³´ìŠ¤ì— ì„ ì–¸í•´ì£¼ê¸°!
 int M_num_Q_boss;
 int M_O_BOSS;
 
-//°íµîÇĞ±³
-int h_total_score; // ÃÑ Á¡¼ö
-int h_correct_score;// ¹®Á¦ ¸Â¾Æ¼­ ¹èÁ¡ ´©ÀûµÈ Á¡¼ö
-int h_time_bonus;	//½Ã°£ º¸³Ê½º
-int h_combo_bonus;	//ÄŞº¸ º¸³Ê½º
-int hboss_total_score;
-int hboss_correct_score;
-int hboss_time_bonus;
-int hboss_combo_bonus;
-
-////////°íµîÇĞ±³ º¸½º¿¡ ¼±¾ğÇØÁÖ±â!
+////////ê³ ë“±í•™êµ ë³´ìŠ¤ì— ì„ ì–¸í•´ì£¼ê¸°!
 int H_num_Q_boss;
 int H_O_BOSS;
 
 
-///*** 5/21 (Çö¿í)- ÃÊ±â È­¸é ÀÌµ¿½Ã Á¡¼ö ÃÊ±âÈ­À§ÇØ ¸¸µç ÇÔ¼ö
-////5/25(Çö¿í) ÃÊµî Á¡¼ö °ü·Ã ¸ğµÎ ÃÊ±âÈ­-ÃßÈÄ »ç¿ë ÇÒ¼öµµ....?
+///*** 5/21 (í˜„ìš±)- ì´ˆê¸° í™”ë©´ ì´ë™ì‹œ ì ìˆ˜ ì´ˆê¸°í™”ìœ„í•´ ë§Œë“  í•¨ìˆ˜
+////5/25(í˜„ìš±) ì´ˆë“± ì ìˆ˜ ê´€ë ¨ ëª¨ë‘ ì´ˆê¸°í™”-ì¶”í›„ ì‚¬ìš© í• ìˆ˜ë„....?////ë°°ì—´ë¡œ ë‹¤ì‹œ ë§Œë“¤ì–´ ë‘ê² ìŠµë‹ˆë‹¤ :-)
 void e_score_reset(void)
 {
-	extern int e_total_score; // ÃÑ Á¡¼ö
-	extern int e_correct_score;// ¹®Á¦ ¸Â¾Æ¼­ ¹èÁ¡ ´©ÀûµÈ Á¡¼ö
-	extern int e_time_bonus;	//½Ã°£ º¸³Ê½º
-	extern int e_combo_bonus;	//ÄŞº¸ º¸³Ê½º
-	extern int eboss_total_score; // ÃÑ Á¡¼ö
-	extern int eboss_correct_score;// ¹®Á¦ ¸Â¾Æ¼­ ¹èÁ¡ ´©ÀûµÈ Á¡¼ö
-	extern int eboss_time_bonus;	//½Ã°£ º¸³Ê½º
-	extern int eboss_combo_bonus;	//ÄŞº¸ º¸³Ê½º
+	extern int e_total_score; // ì´ ì ìˆ˜
+	extern int e_correct_score;// ë¬¸ì œ ë§ì•„ì„œ ë°°ì  ëˆ„ì ëœ ì ìˆ˜
+	extern int e_time_bonus;	//ì‹œê°„ ë³´ë„ˆìŠ¤
+	extern int e_combo_bonus;	//ì½¤ë³´ ë³´ë„ˆìŠ¤
+	extern int eboss_total_score; // ì´ ì ìˆ˜
+	extern int eboss_correct_score;// ë¬¸ì œ ë§ì•„ì„œ ë°°ì  ëˆ„ì ëœ ì ìˆ˜
+	extern int eboss_time_bonus;	//ì‹œê°„ ë³´ë„ˆìŠ¤
+	extern int eboss_combo_bonus;	//ì½¤ë³´ ë³´ë„ˆìŠ¤
 
 	e_total_score=0; 
 	e_correct_score=0;
@@ -73,7 +47,7 @@ void e_score_reset(void)
 
 }
 
-//Á¤´ä ¸ÂÃâ½Ã Á¡¼ö Ãß°¡
+//ì •ë‹µ ë§ì¶œì‹œ ì ìˆ˜ ì¶”ê°€
 void correct(int level, int score)
 {
 	
@@ -278,7 +252,7 @@ void boss_time (int level, int score)
 
 	}
 }
-//Á¤¿ÀÇ¥ ¸®¼Â
+//ì •ì˜¤í‘œ ë¦¬ì…‹
 void resetOX()
 {
 	extern O_X[MAX_Q];
@@ -287,7 +261,7 @@ void resetOX()
 		O_X[i] = 0;
 	}
 }
-//Á¡¼ö ¸®¼Â
+//ì ìˆ˜ ë¦¬ì…‹-ë°°ì—´ë¡œ ë‹¤ì‹œ ë§Œë“¤ì–´ë‘ê² ìŠµë‹ˆë‹¤!
 void score_reset()
 {
 	extern int e_total_score, e_correct_score, e_time_bonus, e_combo_bonus;

@@ -92,12 +92,28 @@ void word_7(char* w) // 7글자 단어
 	printf("%s\n", w);
 }
 
-void word_short(char* w)	//짧은 글 ******************************************5/26 민영
+void word_short(char* w)	//짧은 글 ******************************5/26 민영
 {
 	int i, x, y;
 	char word[25][31] = { "A piece of cake", "Better than nothing", "Catch you later", "Do not miss the boat", "Either will do", "First think and speak", "Good luck to you", "He is history to me",
 		"It is out of style", "Just do it", "Keep it to yourself", "Love will find a way", "No sweat, no sweet", "No pain no gain", "Office changes manners", "Pride will have a fall", "Appearances are deceptive", "Reach for the stars",
 		"Success doesn't come overnight", "This too, shall pass", "Union is strength", "Asking costs nothing", "Will is power", "You let me down", "Habit is second nature" };
+
+	x = rand() % 25;
+	y = sizeof(word[x]) / sizeof(char);
+	for (i = 0; i < y; i++)
+	{
+		w[i] = word[x][i];
+	}
+	printf("%s\n", w);
+}
+
+void word_short_h(char* w)
+{
+	int i, x, y;
+	char word[25][100] = { "They can get married. They are old enough", "No, he won't. I only invited a few people", "Good. I don't really like parties with a lot of people", "Sometimes that can be a good thing", "We all felt sad to see our soccer team play so poorly", "Shut the door so that the cats don't run outside", "Leave early so that you won't miss the bus", "I bet you'd hate to miss your first class even more",
+		"It costs so much to get some clothes cleaned", "Do you know where I can get a watch fixed?", "Five men have been killed in a car accident", "Are you sure we're going in the right direction", "Yes, Her chocolate chip cookies are my favorite", "it is believed that 400 people were hurt in the latest earthquake", "Jack is very old. It is said that he is 108 years old", "Don't worry. I'll run to the store for you", "The truth is that my SAT is below what	they want", "The problem is that he doesn't know his own strength",
+		"I wish I were rich. I need more money to pay my bills", "It's okay. I wasn't there for that long", "Whether he may be young or old, I will employ him", "Do you want to go to the pool with me?", "Thanks. That bus should get me to the meeting on time", "The people who live next to me have three cars", "Though everyone may desert you, I will not" };
 
 	x = rand() % 25;
 	y = sizeof(word[x]) / sizeof(char);

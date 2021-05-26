@@ -5,42 +5,42 @@
 #include <windows.h>
 #include <conio.h>
 
-/* Å°º¸µå ÀÔ·Â */         //############ »öºû - ¹æÇâÅ° ¿Ü¿¡µµ ´õ ¸¹Àº ÀÔ·Â °ªÀ» Ãß°¡ÇØ¼­ (¹æÇâÅ° -> Å°º¸µå ÀÔ·Â)
-#define UP 72             // »ó
-#define DOWN 80           // ÇÏ
-#define LEFT 75           // ÁÂ
-#define RIGHT 77          // ¿ì
-#define Enter 13          // Enter: ¼±ÅÃ
-#define BACKSPACE 8       //############ »öºû - »õ·Î Ãß°¡ÇÔ (BackSpace: Áö¿ì±â)
-#define ESC 27            //############ »öºû - »õ·Î Ãß°¡ÇÔ (ESCÅ°)
+/* í‚¤ë³´ë“œ ì…ë ¥ */         //############ ìƒ‰ë¹› - ë°©í–¥í‚¤ ì™¸ì—ë„ ë” ë§ì€ ì…ë ¥ ê°’ì„ ì¶”ê°€í•´ì„œ (ë°©í–¥í‚¤ -> í‚¤ë³´ë“œ ì…ë ¥)
+#define UP 72             // ìƒ
+#define DOWN 80           // í•˜
+#define LEFT 75           // ì¢Œ
+#define RIGHT 77          // ìš°
+#define Enter 13          // Enter: ì„ íƒ
+#define BACKSPACE 8       //############ ìƒ‰ë¹› - ìƒˆë¡œ ì¶”ê°€í•¨ (BackSpace: ì§€ìš°ê¸°)
+#define ESC 27            //############ ìƒ‰ë¹› - ìƒˆë¡œ ì¶”ê°€í•¨ (ESCí‚¤)
 
-/* °ÔÀÓ ½ÃÀÛ */            //############ »öºû - ·¹ÀÌ¾Æ¿ôÀ» À§ÇØ ±âÈ£ »ó¼ö °ª º¯°æ
+/* ê²Œì„ ì‹œì‘ */            //############ ìƒ‰ë¹› - ë ˆì´ì•„ì›ƒì„ ìœ„í•´ ê¸°í˜¸ ìƒìˆ˜ ê°’ ë³€ê²½
 #define GAMESTART 16
-#define ELEMENTARY 18      // °ÔÀÓ ½ÃÀÛ¸Ş´º - ÃÊµîÇĞ±³ ¼±ÅÃ ÁÂÇ¥
-#define MIDDLE 20          // °ÔÀÓ ½ÃÀÛ¸Ş´º - ÁßÇĞ±³ ¼±ÅÃ ÁÂÇ¥
-#define HIGH 22            // °ÔÀÓ ½ÃÀÛ¸Ş´º - °íµîÇĞ±³ ¼±ÅÃ ÁÂÇ¥
+#define ELEMENTARY 18      // ê²Œì„ ì‹œì‘ë©”ë‰´ - ì´ˆë“±í•™êµ ì„ íƒ ì¢Œí‘œ
+#define MIDDLE 20          // ê²Œì„ ì‹œì‘ë©”ë‰´ - ì¤‘í•™êµ ì„ íƒ ì¢Œí‘œ
+#define HIGH 22            // ê²Œì„ ì‹œì‘ë©”ë‰´ - ê³ ë“±í•™êµ ì„ íƒ ì¢Œí‘œ
 #define GAMERULES 24       
 #define GAME_END 26        
 
 
-/* ¾ÆÀÌÅÛ */
-#define ADDLIFE 0          // ¸ñ¼û + 1 Ãß°¡
-#define CHANGEWORD 1       // ´Ü¾î ¹Ù²Ù±â
-#define ADDTIME 2          // ½Ã°£ Ãß°¡
-#define BOMB 3             // ²Î
+/* ì•„ì´í…œ */
+#define ADDLIFE 0          // ëª©ìˆ¨ + 1 ì¶”ê°€
+#define CHANGEWORD 1       // ë‹¨ì–´ ë°”ê¾¸ê¸°
+#define ADDTIME 2          // ì‹œê°„ ì¶”ê°€
+#define BOMB 3             // ê½
 
-/* ¹®Á¦Ãâ·Â */
+/* ë¬¸ì œì¶œë ¥ */
 #define SIZE 50
 
-/* ¸ñ¼û */
+/* ëª©ìˆ¨ */
 #define LIFE 3
 
 
-/* Á¡¼ö °è»ê */
-#define BonusPerCombo 50    // ÄŞº¸Á¡¼ö
-#define MAX_Q 30           // Á¤¿ÀÇ¥ ±â·ÏÀ» À§ÇÑ ÃÖ´ë ¹®Á¦ °³¼ö
+/* ì ìˆ˜ ê³„ì‚° */
+#define BonusPerCombo 50    // ì½¤ë³´ì ìˆ˜
+#define MAX_Q 30           // ì •ì˜¤í‘œ ê¸°ë¡ì„ ìœ„í•œ ìµœëŒ€ ë¬¸ì œ ê°œìˆ˜
 
-
+/*ì ìˆ˜ ë°°ì—´ ì¸ë±ìŠ¤ê°’*/
 #define total_score 0
 #define correct_score 1
 #define time_bonus 2
@@ -51,43 +51,43 @@
 #define boss_combo_bonus 7
 
 
-/*====================================== ÇÔ¼ö ========================================*/
+/*====================================== í•¨ìˆ˜ ========================================*/
 
-//############ »öºû - ÇÔ¼ö°¡ ¾îµğ¿¡ Á¤ÀÇµÇ¾î ÀÖ´Â Áö Ã£±â ¾î·Á¿ö¼­ ÄÚµå ÆÄÀÏ º°·Î Á¤¸® Çß½À´Ï´Ù
+//############ ìƒ‰ë¹› - í•¨ìˆ˜ê°€ ì–´ë””ì— ì •ì˜ë˜ì–´ ìˆëŠ” ì§€ ì°¾ê¸° ì–´ë ¤ì›Œì„œ ì½”ë“œ íŒŒì¼ ë³„ë¡œ ì •ë¦¬ í–ˆìŠµë‹ˆë‹¤
 
 //main.c
-void gotoxy(int, int);        // Ä¿¼­ ÀÌµ¿ ÇÔ¼ö
-void cursor(int);             // Ä¿¼­ º¸ÀÌ±â/¼û±â±â
+void gotoxy(int, int);        // ì»¤ì„œ ì´ë™ í•¨ìˆ˜
+void cursor(int);             // ì»¤ì„œ ë³´ì´ê¸°/ìˆ¨ê¸°ê¸°
 
 //game_title.c
-void game_title();            // °ÔÀÓ Å¸ÀÌÆ² Ãâ·Â
+void game_title();            // ê²Œì„ íƒ€ì´í‹€ ì¶œë ¥
 
 //game_start.c
-void game_start_menu();       // °ÔÀÓ ½ÃÀÛ ¸Ş´º Ãâ·Â, ·¹º§ ¼±ÅÃ
-void move_stage(int);         // ¼±ÅÃÇÑ ·¹º§·Î ÀÌµ¿
+void game_start_menu();       // ê²Œì„ ì‹œì‘ ë©”ë‰´ ì¶œë ¥, ë ˆë²¨ ì„ íƒ
+void move_stage(int);         // ì„ íƒí•œ ë ˆë²¨ë¡œ ì´ë™
 
 //game_rules.c
-void game_rules();            // °ÔÀÓ ±ÔÄ¢
-void rule_title();            // ±ÔÄ¢ »ó´Ü¹Ù
+void game_rules();            // ê²Œì„ ê·œì¹™
+void rule_title();            // ê·œì¹™ ìƒë‹¨ë°”
 void PAGE1();
 void PAGE2();
 void PAGE3();
 void PAGE4();
 void PAGE5();
-void clear();                 // ³»ºÎ¸¸ Áö¿ì±â
+void clear();                 // ë‚´ë¶€ë§Œ ì§€ìš°ê¸°
 
 //get_name.c
-void get_name();              // ÀÌ¸§ ÀÔ·Â
+void get_name();              // ì´ë¦„ ì…ë ¥
 
 //item.c
-void item_random(int);           // ¾ÆÀÌÅÛ »Ì±â
+void item_random(int);           // ì•„ì´í…œ ë½‘ê¸°
 
 //edit.c
-void drawline();              // È­¸é Å×µÎ¸® ±×¸®±â
-void drawmenu();              // ¸Ş´º 
-void drawitem();              // ¾ÆÀÌÅÛ, ¸ñ¼û Ãâ·Â
-void draws(char*, int, int);  // »ó´Ü ¹Ù ³»¿ë
-void drawtopbar();                 // »ó´Ü ¹Ù Å×µÎ¸®
+void drawline();              // í™”ë©´ í…Œë‘ë¦¬ ê·¸ë¦¬ê¸°
+void drawmenu();              // ë©”ë‰´ 
+void drawitem();              // ì•„ì´í…œ, ëª©ìˆ¨ ì¶œë ¥
+void draws(char*, int, int);  // ìƒë‹¨ ë°” ë‚´ìš©
+void drawtopbar();                 // ìƒë‹¨ ë°” í…Œë‘ë¦¬
 
 void draws_boss(char* sch, int num, int score);
 
@@ -112,12 +112,12 @@ void sadKU();
 void happyKU();
 
 //combo.c
-int Combo_num(int);   // ¿¬¼Ó Á¤´ä °³¼ö ¹İÈ¯ ÇÔ¼ö
+int Combo_num(int);   // ì—°ì† ì •ë‹µ ê°œìˆ˜ ë°˜í™˜ í•¨ìˆ˜
 
-int combo_print(int); //**** 5/24(Çö¿í) ÄŞº¸ ½Ç½Ã°£ Ç¥½Ã Ãß°¡
+int combo_print(int); //**** 5/24(í˜„ìš±) ì½¤ë³´ ì‹¤ì‹œê°„ í‘œì‹œ ì¶”ê°€
 
 //reset.c
-void reset_OX();               // Á¤¿ÀÇ¥ ÃÊ±âÈ­
+void reset_OX();               // ì •ì˜¤í‘œ ì´ˆê¸°í™”
 
 //life.c
 int decrease_life();
@@ -141,16 +141,16 @@ void word_6(char*);
 void word_7(char*);
 
 //score.c
-void correct(int, int); //Á¤´ä Á¡¼ö ¹İ¿µ
-void combo(int);//ÄŞº¸ º¸³Ê½º ¹İ¿µ
+void correct(int, int); //ì •ë‹µ ì ìˆ˜ ë°˜ì˜
+void combo(int);//ì½¤ë³´ ë³´ë„ˆìŠ¤ ë°˜ì˜
 void timescore(int,int);
 
-void boss_correct(int , int ); //Á¤´ä Á¡¼ö ¹İ¿µ
+void boss_correct(int , int ); //ì •ë‹µ ì ìˆ˜ ë°˜ì˜
 
-void boss_combo(int ); //ÄŞº¸ º¸³Ê½º ¹İ¿µ
+void boss_combo(int ); //ì½¤ë³´ ë³´ë„ˆìŠ¤ ë°˜ì˜
 
 void boss_time(int , int );
 
 void score_reset();
-void resetOX();//Á¤¿ÀÇ¥ ÃÊ±âÈ­
+void resetOX();//ì •ì˜¤í‘œ ì´ˆê¸°í™”
 

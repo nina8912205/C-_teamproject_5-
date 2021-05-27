@@ -5,58 +5,59 @@
 #include <windows.h>
 #include <conio.h>
 
-/* Å°º¸µå ÀÔ·Â */
-#define UP 72             // »ó
-#define DOWN 80           // ÇÏ
-#define LEFT 75           // ÁÂ
-#define RIGHT 77          // ¿ì
+/* í‚¤ë³´ë“œ ì…ë ¥ */
+#define UP 72             // ìƒ
+#define DOWN 80           // í•˜
+#define LEFT 75           // ì¢Œ
+#define RIGHT 77          // ìš°
 #define Enter 13          // Enter
 #define BACKSPACE 8       // BackSpace
 #define ESC 27            // Esc
 #define TAB 9             // Tab
 #define SPACE 32          // SPACE 
 
-/* °ÔÀÓ ½ÃÀÛ */
+/* ê²Œì„ ì‹œì‘ */
 #define GAMESTART 16
-#define ELEMENTARY 18      // °ÔÀÓ ½ÃÀÛ¸Ş´º - ÃÊµîÇĞ±³ ¼±ÅÃ ÁÂÇ¥
-#define MIDDLE 20          // °ÔÀÓ ½ÃÀÛ¸Ş´º - ÁßÇĞ±³ ¼±ÅÃ ÁÂÇ¥
-#define HIGH 22            // °ÔÀÓ ½ÃÀÛ¸Ş´º - °íµîÇĞ±³ ¼±ÅÃ ÁÂÇ¥
+#define ELEMENTARY 18      // ê²Œì„ ì‹œì‘ë©”ë‰´ - ì´ˆë“±í•™êµ ì„ íƒ ì¢Œí‘œ
+#define MIDDLE 20          // ê²Œì„ ì‹œì‘ë©”ë‰´ - ì¤‘í•™êµ ì„ íƒ ì¢Œí‘œ
+#define HIGH 22            // ê²Œì„ ì‹œì‘ë©”ë‰´ - ê³ ë“±í•™êµ ì„ íƒ ì¢Œí‘œ
 #define GAMERULES 24       
 #define GAME_END 26        
 
 
-/* ¾ÆÀÌÅÛ */
-#define ADDLIFE 0          // ¸ñ¼û + 1 Ãß°¡
-#define CHANGEWORD 1       // ´Ü¾î ¹Ù²Ù±â
-#define ADDTIME 2          // ½Ã°£ Ãß°¡
-#define BOMB 3             // ²Î
+/* ì•„ì´í…œ */
+#define ADDLIFE 0          // ëª©ìˆ¨ + 1 ì¶”ê°€
+#define CHANGEWORD 1       // ë‹¨ì–´ ë°”ê¾¸ê¸°
+#define ADDTIME 2          // ì‹œê°„ ì¶”ê°€
+#define BOMB 3             // ê½
 
-/* ¹®Á¦Ãâ·Â */
+/* ë¬¸ì œì¶œë ¥ */
 #define SIZE 50
 
-/* ¸ñ¼û */
+/* ëª©ìˆ¨ */
 #define LIFE 3
 
-/* Á¡¼ö °è»ê */
-#define BonusPerCombo 50    // ÄŞº¸Á¡¼ö
-#define MAX_Q 20            // Á¤¿ÀÇ¥ ±â·ÏÀ» À§ÇÑ ÃÖ´ë ¹®Á¦ °³¼ö
+/* ì ìˆ˜ ê³„ì‚° */
+#define BonusPerCombo 50    // ì½¤ë³´ì ìˆ˜
+#define MAX_Q 20            // ì •ì˜¤í‘œ ê¸°ë¡ì„ ìœ„í•œ ìµœëŒ€ ë¬¸ì œ ê°œìˆ˜
 
-/* Á¡¼ö ¹è¿­ ÀÎµ¦½º */
-//1Â÷¿ø-ÇĞ±³ ´Ü°è
+/* ì ìˆ˜ ë°°ì—´ ì¸ë±ìŠ¤ */
+//1ì°¨ì›-í•™êµ ë‹¨ê³„
 #define E 0
 #define M 1
 #define H 2
-//2Â÷¿ø
-#define TOTAL 0
-#define CORRECT 1
-#define TIME 2
-#define COMBO 3
-#define BOSS 4
-#define B_CORRECT 5
+//2ì°¨ì›
+//B_ ë¶™ìœ¼ë©´ ë³´ìŠ¤
+#define TOTAL 0 //ì´ ì ìˆ˜(ë¬¸ì œ ë°°ì +ì‹œê°„+ì½¤ë³´_
+#define CORRECT 1 //ë¬¸ì œ ë°°ì  ì ìˆ˜
+#define TIME 2  //ì‹œê°„ì ìˆ˜
+#define COMBO 3 //ì½¤ë³´ì ìˆ˜
+#define BOSS 4  //ë³´ìŠ¤ ì´ ì ìˆ˜
+#define B_CORRECT 5 
 #define B_TIME 6
 #define B_COMBO 7
-#define Q_CORRECT 8	//¸ÂÀº ¹®Á¦¼ö
-#define Q_SOLVED 9	//Ç¬ ¹®Á¦¼ö
+#define Q_CORRECT 8	//ë§ì€ ë¬¸ì œìˆ˜
+#define Q_SOLVED 9	//í‘¼ ë¬¸ì œìˆ˜
 #define B_Q_CORRECT 10
 #define B_Q_SOLVED 11
 
@@ -64,40 +65,40 @@
 #define SSIZE 12
 
 
-/*====================================== ÇÔ¼ö ========================================*/
+/*====================================== í•¨ìˆ˜ ========================================*/
 
 //game_title.c
-void game_title();            // °ÔÀÓ Å¸ÀÌÆ² Ãâ·Â
+void game_title();            // ê²Œì„ íƒ€ì´í‹€ ì¶œë ¥
 
 //game_start.c
-void game_start_menu();       // °ÔÀÓ ½ÃÀÛ ¸Ş´º Ãâ·Â, ·¹º§ ¼±ÅÃ
-void move_stage(int);         // ¼±ÅÃÇÑ ·¹º§·Î ÀÌµ¿
+void game_start_menu();       // ê²Œì„ ì‹œì‘ ë©”ë‰´ ì¶œë ¥, ë ˆë²¨ ì„ íƒ
+void move_stage(int);         // ì„ íƒí•œ ë ˆë²¨ë¡œ ì´ë™
 
 //game_rules.c
-void game_rules();            // °ÔÀÓ ±ÔÄ¢
-void rule_title();            // ±ÔÄ¢ »ó´Ü¹Ù
+void game_rules();            // ê²Œì„ ê·œì¹™
+void rule_title();            // ê·œì¹™ ìƒë‹¨ë°”
 void PAGE1();
 void PAGE2();
 void PAGE3();
 void PAGE4();
 void PAGE5();
-void clear();                 // ³»ºÎ¸¸ Áö¿ì±â
+void clear();                 // ë‚´ë¶€ë§Œ ì§€ìš°ê¸°
 
 //get_name.c
-void get_name(int);              // ÀÌ¸§ ÀÔ·Â
+void get_name(int);              // ì´ë¦„ ì…ë ¥
 
 //item.c
-void item_random(int);           // ¾ÆÀÌÅÛ »Ì±â
+void item_random(int);           // ì•„ì´í…œ ë½‘ê¸°
 
 //edit.c
-void drawline(int, int, int, int);              // È­¸é Å×µÎ¸® ±×¸®±â
-void drawmenu();              // ¸Ş´º 
-void drawitem();              // ¾ÆÀÌÅÛ, ¸ñ¼û Ãâ·Â
-void draws(char*, int, int);  // »ó´Ü ¹Ù ³»¿ë
+void drawline(int, int, int, int);              // í™”ë©´ í…Œë‘ë¦¬ ê·¸ë¦¬ê¸°
+void drawmenu();              // ë©”ë‰´ 
+void drawitem();              // ì•„ì´í…œ, ëª©ìˆ¨ ì¶œë ¥
+void draws(char*, int, int);  // ìƒë‹¨ ë°” ë‚´ìš©
 void draws_boss(char*, int, int);
-void drawtopbar();                 // »ó´Ü ¹Ù Å×µÎ¸®
-void gotoxy(int, int);        // Ä¿¼­ ÀÌµ¿ ÇÔ¼ö
-void cursor(int);             // Ä¿¼­ º¸ÀÌ±â/¼û±â±â
+void drawtopbar();                 // ìƒë‹¨ ë°” í…Œë‘ë¦¬
+void gotoxy(int, int);        // ì»¤ì„œ ì´ë™ í•¨ìˆ˜
+void cursor(int);             // ì»¤ì„œ ë³´ì´ê¸°/ìˆ¨ê¸°ê¸°
 
 //game.c
 int game(int, int, char*, char*, int);
@@ -120,8 +121,8 @@ int Scorecard(int);
 void KU(int);
 
 //combo.c
-int Combo_num(int);   // ¿¬¼Ó Á¤´ä °³¼ö ¹İÈ¯ ÇÔ¼ö
-int combo_print(int);     // ÄŞº¸Á¡¼ö ¹İÈ¯ ÇÔ¼ö
+int Combo_num(int);   // ì—°ì† ì •ë‹µ ê°œìˆ˜ ë°˜í™˜ í•¨ìˆ˜
+int combo_print(int);     // ì½¤ë³´ì ìˆ˜ ë°˜í™˜ í•¨ìˆ˜
 
 //life.c
 int decrease_life();

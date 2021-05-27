@@ -1,0 +1,156 @@
+#include "common.h"
+
+int O_X[MAX_Q] = { 0 }; 
+int E_num_Q;
+int E_O;
+
+void elementary(int n) // elementary(0): 처음시작, elementary(1): 처음아님.
+{
+	extern int life, changeword, addtime;
+	extern int time_left, e_score[], TotalScore;
+
+	char word[SIZE], input[SIZE];
+	int grade, score = 0;
+	int timelimit, result;
+	int go = 0; // 다음 단계로
+
+	if (!n)
+	{
+		get_name(ELEMENTARY);       // 이름 받기
+		system("cls");
+	}
+
+	drawline(21, 8, 75, 25);     // 레이아웃 그리기
+
+	item_random(3);    // 아이템 뽑기
+	system("cls");
+
+	for (grade = 1; grade <= 6; grade++) 
+	{
+		score = grade * 1000; // 학년 당 배점
+
+		// 목숨 검사
+		if (life == 0)
+			break;
+
+		for (int num = 1; num <= 1; num++) 
+		{
+			gotoxy(32, 24);
+			printf("total: %d, e_time: %d", TotalScore, e_score[TIME]);
+			gotoxy(32, 25);
+			printf("e_correct: %d, e_combo: %d", e_score[CORRECT], e_score[COMBO]);
+			E_num_Q++;
+
+			// 레이아웃
+			drawline(21, 8, 75, 25);
+			draws("초등", grade, num);
+			drawitem();
+			drawmenu();
+
+			// 문제출력
+			gotoxy(32, 17);
+			printf("문제 : ");
+
+			switch (grade) // 학년별 문제 출력
+			{
+			case 1:
+			case 2:
+				random_word(grade, word); // 1~2학년: 랜덤 문자열
+				break;
+			case 3:
+				if (rand() % 2 == 0)
+					word_3(word);
+				else
+					random_word(grade, word); // 3학년: 3글자 단어 or 랜덤 문자열
+				break;
+			case 4:
+				if (rand() % 2 == 0)
+					word_4(word);
+				else
+					random_word(grade, word); // 4학년: 4글자 단어 or 랜덤 문자열
+				break;
+			case 5:
+				if (rand() % 2 == 0)
+					word_5(word);
+				else
+					random_word(grade, word); // 5학년: 5글자 단어 or 랜덤 문자열
+				break;
+			case 6:
+				if (rand() % 2 == 0)
+					word_6(word);
+				else
+					random_word(grade, word); // 6학년: 6글자 단어 or 랜덤 문자열
+				break;
+			}
+			gotoxy(32, 15);
+			printf("배점 : %d 점 / 제한시간: %d 초", score, Etime(grade));
+
+			// 문제맞추기
+			gotoxy(32, 19);
+			printf("문제를 따라 치세요: ");
+			cursor(1);
+			timelimit = Etime(grade);	// 초등학교 제한시간 반환
+			result = game(grade, timelimit, input, word, E_num_Q);// 단어 입력 받기 & 제한 시간이 지나면 넘어가기
+
+			// 단어 바꾸기 실행
+			if (result == 5)
+			{
+				num--;
+				continue;
+			}
+
+			// result 0: 오답, 1: 정답, 2: 메뉴열었음 
+			while (1)
+			{
+				if (result == 1)
+				{
+					timescore(ELEMENTARY, TimeBonus(time_left));
+					correct(ELEMENTARY, score);
+					if (O_X[E_num_Q - 2] == 1)
+					{
+						combo(ELEMENTARY);
+					}
+					E_O++;//맞은 문제수 기록
+
+					break;
+				}
+				else if (result == 2) // 메뉴에서 돌아왔을때
+				{
+					// 문제 다시 출력
+					drawline(21, 8, 75, 25);
+					draws("초등", grade, num);
+					drawitem();
+					drawmenu();
+					gotoxy(32, 17);
+
+					printf("문제 : %s", word);
+					gotoxy(70, 17);
+					printf("배점 : %d 점", score);
+
+					gotoxy(32, 19);
+					printf("문제를 따라 치세요: ");
+					timelimit = Etime(grade);
+					result = game(grade, timelimit, input, word, E_num_Q);
+				}
+				else
+					break;
+				draws("초등", grade, num);
+			}
+
+			// 정오표 기록(0: 오답, 1: 정답/ 만약(result==2)라면 반복문에서 못 나옴)
+			O_X[E_num_Q - 1] = result;
+			
+		}
+	}
+
+	// 목숨이 있을 경우, 초등학교 보스!
+	if (life > 0)
+		e_boss();
+
+	go = Scorecard(ELEMENTARY);
+	
+
+	// 다음 단계로
+	if (go)
+		middle(1);
+}

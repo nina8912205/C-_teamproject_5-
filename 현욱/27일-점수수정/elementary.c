@@ -2,7 +2,7 @@
 
 int O_X[MAX_Q] = { 0 };
 
-void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
+void elementary(int n) // elementary(0): ì²˜ìŒì‹œì‘, elementary(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int life, changeword, addtime;
 	extern int time_left, scorearray[GRADESIZE][SSIZE], TotalScore;
@@ -10,24 +10,24 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 	char word[SIZE], input[SIZE];
 	int grade, score = 0;
 	int timelimit, result;
-	int go = 0; // ´ÙÀ½ ´Ü°è·Î
+	int go = 0; // ë‹¤ìŒ ë‹¨ê³„ë¡œ
 
 	if (!n)
 	{
-		get_name(ELEMENTARY);       // ÀÌ¸§ ¹Ş±â
+		get_name(ELEMENTARY);       // ì´ë¦„ ë°›ê¸°
 		system("cls");
 	}
 
-	drawline(21, 8, 75, 25);     // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);     // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(3);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(3);    // ì•„ì´í…œ ë½‘ê¸°
 	system("cls");
 
 	for (grade = 1; grade <= 6; grade++)
 	{
-		score = grade * 1000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 1000; // í•™ë…„ ë‹¹ ë°°ì 
 
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if (life == 0)
 			break;
 
@@ -40,65 +40,65 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 			scorearray[E][Q_SOLVED]++;
 
 
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			drawline(21, 8, 75, 25);
-			draws("ÃÊµî", grade, num);
+			draws("ì´ˆë“±", grade, num);
 			drawitem();
 			drawmenu();
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			gotoxy(32, 17);
-			printf("¹®Á¦ : ");
+			printf("ë¬¸ì œ : ");
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
 			case 1:
 			case 2:
-				random_word(grade, word); // 1~2ÇĞ³â: ·£´ı ¹®ÀÚ¿­
+				random_word(grade, word); // 1~2í•™ë…„: ëœë¤ ë¬¸ìì—´
 				break;
 			case 3:
 				if (rand() % 2 == 0)
 					word_3(word);
 				else
-					random_word(grade, word); // 3ÇĞ³â: 3±ÛÀÚ ´Ü¾î or ·£´ı ¹®ÀÚ¿­
+					random_word(grade, word); // 3í•™ë…„: 3ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 4:
 				if (rand() % 2 == 0)
 					word_4(word);
 				else
-					random_word(grade, word); // 4ÇĞ³â: 4±ÛÀÚ ´Ü¾î or ·£´ı ¹®ÀÚ¿­
+					random_word(grade, word); // 4í•™ë…„: 4ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 5:
 				if (rand() % 2 == 0)
 					word_5(word);
 				else
-					random_word(grade, word); // 5ÇĞ³â: 5±ÛÀÚ ´Ü¾î or ·£´ı ¹®ÀÚ¿­
+					random_word(grade, word); // 5í•™ë…„: 5ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			case 6:
 				if (rand() % 2 == 0)
 					word_6(word);
 				else
-					random_word(grade, word); // 6ÇĞ³â: 6±ÛÀÚ ´Ü¾î or ·£´ı ¹®ÀÚ¿­
+					random_word(grade, word); // 6í•™ë…„: 6ê¸€ì ë‹¨ì–´ or ëœë¤ ë¬¸ìì—´
 				break;
 			}
 			gotoxy(32, 15);
-			printf("¹èÁ¡ : %d Á¡ / Á¦ÇÑ½Ã°£: %d ÃÊ", score, Etime(grade));
+			printf("ë°°ì  : %d ì  / ì œí•œì‹œê°„: %d ì´ˆ", score, Etime(grade));
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			gotoxy(32, 19);
-			printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+			printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 			cursor(1);
-			timelimit = Etime(grade);	// ÃÊµîÇĞ±³ Á¦ÇÑ½Ã°£ ¹İÈ¯
-			result = game(grade, timelimit, input, word, scorearray[E][Q_SOLVED]);// ´Ü¾î ÀÔ·Â ¹Ş±â & Á¦ÇÑ ½Ã°£ÀÌ Áö³ª¸é ³Ñ¾î°¡±â
+			timelimit = Etime(grade);	// ì´ˆë“±í•™êµ ì œí•œì‹œê°„ ë°˜í™˜
+			result = game(grade, timelimit, input, word, scorearray[E][Q_SOLVED]);// ë‹¨ì–´ ì…ë ¥ ë°›ê¸° & ì œí•œ ì‹œê°„ì´ ì§€ë‚˜ë©´ ë„˜ì–´ê°€ê¸°
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == 5)
 			{
 				num--;
 				continue;
 			}
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½ 
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ 
 			while (1)
 			{
 				if (result == 1)
@@ -109,47 +109,47 @@ void elementary(int n) // elementary(0): Ã³À½½ÃÀÛ, elementary(1): Ã³À½¾Æ´Ô.
 					{
 						combo(ELEMENTARY);
 					}
-					scorearray[E][Q_CORRECT]++;//¸ÂÀº ¹®Á¦¼ö ±â·Ï
+					scorearray[E][Q_CORRECT]++;//ë§ì€ ë¬¸ì œìˆ˜ ê¸°ë¡
 
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					drawline(21, 8, 75, 25);
-					draws("ÃÊµî", grade, num);
+					draws("ì´ˆë“±", grade, num);
 					drawitem();
 					drawmenu();
 					gotoxy(32, 17);
 
-					printf("¹®Á¦ : %s", word);
+					printf("ë¬¸ì œ : %s", word);
 					gotoxy(70, 17);
-					printf("¹èÁ¡ : %d Á¡", score);
+					printf("ë°°ì  : %d ì ", score);
 
 					gotoxy(32, 19);
-					printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+					printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 					timelimit = Etime(grade);
 					result = game(grade, timelimit, input, word, scorearray[E][Q_SOLVED]);
 				}
 				else
 					break;
-				draws("ÃÊµî", grade, num);
+				draws("ì´ˆë“±", grade, num);
 			}
 
-			// Á¤¿ÀÇ¥ ±â·Ï(0: ¿À´ä, 1: Á¤´ä/ ¸¸¾à(result==2)¶ó¸é ¹İº¹¹®¿¡¼­ ¸ø ³ª¿È)
+			// ì •ì˜¤í‘œ ê¸°ë¡(0: ì˜¤ë‹µ, 1: ì •ë‹µ/ ë§Œì•½(result==2)ë¼ë©´ ë°˜ë³µë¬¸ì—ì„œ ëª» ë‚˜ì˜´)
 			O_X[scorearray[E][Q_SOLVED] - 1] = result;
 
 		}
 	}
 
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÃÊµîÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì´ˆë“±í•™êµ ë³´ìŠ¤!
 	if (life > 0)
 		e_boss();
 
-	go = Scorecard(ELEMENTARY);
+	go = Scorecard(E);
 
 
-	// ´ÙÀ½ ´Ü°è·Î
+	// ë‹¤ìŒ ë‹¨ê³„ë¡œ
 	if (go)
 		middle(1);
 }

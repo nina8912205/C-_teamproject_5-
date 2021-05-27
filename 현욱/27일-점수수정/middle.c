@@ -1,10 +1,10 @@
 /* (5/26)
-   - word ¼Ó ¹®ÀÚ¿­ÀÇ Å©±â¸¦ ÀÎ½ÄÇÏ°í, ±×¸¸Å­ ÀÔ·Â¹Şµµ·Ï ¼öÁ¤
+   - word ì† ë¬¸ìì—´ì˜ í¬ê¸°ë¥¼ ì¸ì‹í•˜ê³ , ê·¸ë§Œí¼ ì…ë ¥ë°›ë„ë¡ ìˆ˜ì •
 */
 #include "common.h"
 #define MSIZE 7
 
-void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
+void middle(int n) // middle(0): ì²˜ìŒì‹œì‘, middle(1): ì²˜ìŒì•„ë‹˜.
 {
 
 	extern int O_X[], scorearray[GRADESIZE][SSIZE], TotalScore;
@@ -16,7 +16,7 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 	int timelimit, result, size;
 	int go;
 
-	time_left = 0;  // ³²Àº½Ã°£ ÃÊ±âÈ­
+	time_left = 0;  // ë‚¨ì€ì‹œê°„ ì´ˆê¸°í™”
 	resetOX();
 
 	if (!n)
@@ -25,16 +25,16 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 		system("cls");
 	}
 
-	drawline(21, 8, 75, 25);       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);    // ì•„ì´í…œ ë½‘ê¸°
 	system("cls");
 
 	for (grade = 1; grade <= 3; grade++)
 	{
-		score = grade * 3000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 3000; // í•™ë…„ ë‹¹ ë°°ì 
 
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if (life == 0)
 			break;
 
@@ -45,47 +45,47 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 			gotoxy(32, 25);
 			printf("m_correct: %d, m_combo: %d", scorearray[M][CORRECT], scorearray[M][COMBO]);
 			scorearray[M][Q_SOLVED]++;
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			drawline(21, 8, 75, 25);
-			draws("Áß", grade, num);
+			draws("ì¤‘", grade, num);
 			drawitem();
 			drawmenu();
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			gotoxy(32, 17);
-			printf("¹®Á¦ : ");
+			printf("ë¬¸ì œ : ");
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
-			case 1:                    // 1ÇĞ³â: 7±ÛÀÚ ¿µ´Ü¾î
+			case 1:                    // 1í•™ë…„: 7ê¸€ì ì˜ë‹¨ì–´
 				word_7(word);
 				break;
-			case 2:                    // 2ÇĞ³â: ·£´ı ¹®ÀÚ¿­(7±ÛÀÚ)
+			case 2:                    // 2í•™ë…„: ëœë¤ ë¬¸ìì—´(7ê¸€ì)
 				random_word(MSIZE, word);
 				break;
-			case 3:                    // 3ÇĞ³â: ÂªÀº ±Û
+			case 3:                    // 3í•™ë…„: ì§§ì€ ê¸€
 				word_short(word);
 				break;
 			}
 			gotoxy(70, 17);
-			printf("¹èÁ¡ : %d Á¡", score);
+			printf("ë°°ì  : %d ì ", score);
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			gotoxy(32, 19);
-			printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+			printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 			cursor(1);
 			size = strlen(word);
 			timelimit = Mtime(grade);
 			result = game(size, timelimit, input, word, scorearray[M][Q_SOLVED]);
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == 5)
 			{
 				num--;
 				continue;
 			}
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ
 			while (1)
 			{
 				if (result == 1)
@@ -97,21 +97,21 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 					scorearray[M][Q_CORRECT]++;
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					drawline(21, 8, 75, 25);
-					draws("Áß", grade, num);
+					draws("ì¤‘", grade, num);
 					drawitem();
 					drawmenu();
 					gotoxy(32, 17);
 
-					printf("¹®Á¦ : %s", word);
+					printf("ë¬¸ì œ : %s", word);
 					gotoxy(70, 17);
-					printf("¹èÁ¡ : %d Á¡", score);
+					printf("ë°°ì  : %d ì ", score);
 
 					gotoxy(32, 19);
-					printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+					printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 					timelimit = Mtime(grade);
 					result = game(size, timelimit, input, word, scorearray[M][Q_SOLVED]);
 				}
@@ -119,17 +119,17 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 					break;
 			}
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[scorearray[M][Q_SOLVED] - 1] = result;
 
 		}
 	}
 
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 	/*if (life > 0)
 		m_boss();*/
 
-		// ¼ºÀûÇ¥ Ãâ·Â
-	go = Scorecard(MIDDLE);
+		// ì„±ì í‘œ ì¶œë ¥
+	go = Scorecard(M);
 
 }

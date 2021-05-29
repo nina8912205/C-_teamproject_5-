@@ -1,44 +1,117 @@
 #include "common.h"
 
-//ÃÖÁ¾ Á¾·á½Ã ¼ºÀûÇ¥
-void Final_Scorecard(int elementary, int middle, int high)
+//ìµœì¢… ì¢…ë£Œì‹œ ì„±ì í‘œ
+void Final_Scorecard()
 {
 	extern char name[];
+	extern int life, TotalScore;
 	int grade;
-	int scoresum = elementary + middle + high;
+	extern int scorearray[GRADESIZE][SSIZE];
 
-	//µî±Ş »êÁ¤-ÃßÈÄ Á¶Á¤ÇÏ±â
-	if (scoresum < 10000)
+	drawline(21, 8, 75, 25);
+	drawitem();
+	drawmenu();
+
+	if (TotalScore < 10000)
 		grade = 9;
-	else if (10000 <= scoresum && scoresum < 20000)
+	else if (10000 <= TotalScore && TotalScore < 20000)
 		grade = 8;
-	else if (20000 <= scoresum && scoresum < 30000)
+	else if (20000 <= TotalScore && TotalScore < 30000)
 		grade = 7;
-	else if (30000 <= scoresum && scoresum < 40000)
+	else if (30000 <= TotalScore && TotalScore < 40000)
 		grade = 6;
-	else if (40000 <= scoresum && scoresum < 50000)
+	else if (40000 <= TotalScore && TotalScore < 50000)
 		grade = 5;
-	else if (50000 <= scoresum && scoresum < 60000)
+	else if (50000 <= TotalScore && TotalScore < 60000)
 		grade = 4;
-	else if (60000 <= scoresum && scoresum < 70000)
+	else if (60000 <= TotalScore && TotalScore < 70000)
 		grade = 3;
-	else if (70000 <= scoresum && scoresum < 80000)
+	else if (70000 <= TotalScore && TotalScore < 80000)
 		grade = 2;
 	else
 		grade = 1;
 
-	printf("                     ¼ºÀûÇ¥                     \n");
-	printf("                                    ÀÌ¸§:	%s  \n", name);//ÀÌ¸§ Ãâ·Â
-	printf("                                                \n");
-	printf("             ÃÊµîÇĞ±³:  %dÁ¡\n\n", elementary);
-	printf("             ÁßÇĞ±³  :  %dÁ¡\n\n", middle);
-	printf("             °íµîÇĞ±³:  %dÁ¡\n\n", high);
-	printf("             ÃÑÁ¡    :  %dÁ¡\n\n", elementary + middle + high);
-	printf("             ÃÖÁ¾ µî±Ş: %dµî±Ş", grade);
+	gotoxy(55, 10);
+	printf("! ì¶•í•˜í•©ë‹ˆë‹¤ !");
+	gotoxy(45, 11);
+	printf("! êµìœ¡ ê³¼ì •ì„ ëª¨ë‘ ì´ìˆ˜í•˜ì…¨ìŠµë‹ˆë‹¤ !");
+	gotoxy(75, 13);
+	printf("ì´ë¦„: %s\n", name);//ì´ë¦„ ì¶œë ¥
 
+	gotoxy(28, 15);
+	printf("|ì´ˆë“±í•™êµ| - ");
+	print_phrase(E);
+	gotoxy(28, 17);
+	printf("ë§ì€ ë¬¸ì œìˆ˜ / í‘¼ ë¬¸ì œìˆ˜: ");
+	gotoxy(53, 17);
+	printf("%d  /  %d", scorearray[E][Q_CORRECT] + scorearray[E][B_Q_CORRECT], scorearray[E][Q_SOLVED] + scorearray[E][B_Q_SOLVED]);
+	gotoxy(65, 17);
+	printf("íšë“ ì ìˆ˜: %6d ì ", scorearray[E][TOTAL] + scorearray[E][BOSS]);
+	
+
+	gotoxy(28, 20);
+	printf("| ì¤‘í•™êµ | - ");
+	print_phrase(M);
+	gotoxy(28, 22);
+	printf("ë§ì€ ë¬¸ì œìˆ˜ / í‘¼ ë¬¸ì œìˆ˜: ");
+	gotoxy(53, 22);
+	printf("%d  /  %d", scorearray[M][Q_CORRECT] + scorearray[M][B_Q_CORRECT], scorearray[M][Q_SOLVED] + scorearray[M][B_Q_SOLVED]);
+	gotoxy(65, 22);
+	printf("íšë“ ì ìˆ˜: %6d ì ", scorearray[M][TOTAL] + scorearray[M][BOSS]);
+
+	gotoxy(28, 25);
+	printf("|ê³ ë“±í•™êµ| - ");
+	print_phrase(H);
+	gotoxy(28, 27);
+	printf("ë§ì€ ë¬¸ì œìˆ˜ / í‘¼ ë¬¸ì œìˆ˜: ");
+	gotoxy(53, 27);
+	printf("%d  /  %d", scorearray[H][Q_CORRECT] + scorearray[H][B_Q_CORRECT], scorearray[H][Q_SOLVED] + scorearray[H][B_Q_SOLVED]);
+	gotoxy(65, 27);
+	printf("íšë“ ì ìˆ˜: %6d ì ", scorearray[H][TOTAL] + scorearray[H][BOSS]); 
+
+	
+	gotoxy(27, 29);
+	printf("-------------------------------------------------------------");
+	gotoxy(28, 30);
+	printf("ì´ íšë“ ì ìˆ˜: %d ì  / %d ë“±ê¸‰\n", TotalScore, grade);
+
+	
 }
 
-// ÇĞ³âº° ¼ºÀûÇ¥
+void print_phrase(int level)
+{
+	extern int scorearray[GRADESIZE][SSIZE];
+	int score = scorearray[level][TOTAL] + scorearray[level][BOSS];
+	switch (level)
+	{
+	case E:
+	{
+		if (score < 60000)
+			printf("ì¡°ê¸ˆ ë” ì—°ìŠµí•´ë³´ì•„ìš”!");
+		else
+			printf("ì˜í–ˆìŠµë‹ˆë‹¤!");
+		break;
+	}
+	case M:
+	{
+		if (score < 45000)
+			printf("ì¡°ê¸ˆ ë” ì—°ìŠµí•´ë³´ì•„ìš”!");
+		else
+			printf("ì˜í–ˆìŠµë‹ˆë‹¤!");
+		break;
+	}
+	case H:
+	{
+		if (score < 45000)
+			printf("ì¡°ê¸ˆ ë” ì—°ìŠµí•´ë³´ì•„ìš”!");
+		else
+			printf("ì˜í–ˆìŠµë‹ˆë‹¤!");
+		break;
+	}
+	}
+}
+
+// í•™ë…„ë³„ ì„±ì í‘œ
 int Scorecard(int level)
 {
 	extern char name[];
@@ -57,15 +130,15 @@ int Scorecard(int level)
 	switch (level)
 	{
 	case E:
-		strcpy(school, "ÃÊµî");
-		strcpy(next, "Áß");
+		strcpy(school, "ì´ˆë“±");
+		strcpy(next, "ì¤‘");
 		break;
 	case M:
-		strcpy(school, "Áß");
-		strcpy(next, "°íµî");
+		strcpy(school, "ì¤‘");
+		strcpy(next, "ê³ ë“±");
 		break;
 	case H:
-		strcpy(school, "°íµî");
+		strcpy(school, "ê³ ë“±");
 		break;
 	}
 
@@ -75,7 +148,7 @@ int Scorecard(int level)
 		KU(1);
 		drawline(21, 8, 75, 25);
 		gotoxy(45, 12);
-		printf("! %sÇĞ±³ Á¹¾÷À» ÃàÇÏÇÕ´Ï´Ù ! \n\n", school);
+		printf("! %sí•™êµ ì¡¸ì—…ì„ ì¶•í•˜í•©ë‹ˆë‹¤ ! \n\n", school);
 	}
 	else
 	{
@@ -83,39 +156,39 @@ int Scorecard(int level)
 		KU(0);
 		drawline(21, 8, 75, 25);
 		gotoxy(45, 12);
-		printf(" --  Á¶±İ ´õ ¿¬½ÀÇØº¸¾Æ¿ä!  --");
+		printf(" --  ì¡°ê¸ˆ ë” ì—°ìŠµí•´ë³´ì•„ìš”!  --");
 	}
 
 	gotoxy(75, 14);
-	printf("ÀÌ¸§: %s\n", name);//ÀÌ¸§ Ãâ·Â
+	printf("ì´ë¦„: %s\n", name);//ì´ë¦„ ì¶œë ¥
 	gotoxy(58, 16);
-	printf("ÇĞ±³");
+	printf("í•™êµ");
 	gotoxy(73, 16);
-	printf("±³Àå");
+	printf("êµì¥");
 	gotoxy(28, 18);
-	printf("¸ÂÀº ¹®Á¦¼ö / Ç¬ ¹®Á¦¼ö");
+	printf("ë§ì€ ë¬¸ì œìˆ˜ / í‘¼ ë¬¸ì œìˆ˜");
 	gotoxy(35, 20);
-	printf("È¹µæ Á¡¼ö");
+	printf("íšë“ ì ìˆ˜");
 	gotoxy(33, 22);
-	printf("½Ã°£ Ãß°¡ Á¡¼ö");
+	printf("ì‹œê°„ ì¶”ê°€ ì ìˆ˜");
 	gotoxy(35, 24);
-	printf("ÄŞº¸ Á¡¼ö");
+	printf("ì½¤ë³´ ì ìˆ˜");
 	gotoxy(57, 18);
 	printf("%d / %d", scorearray[level][Q_CORRECT], scorearray[level][Q_SOLVED]);
 	gotoxy(72, 18);
 	printf("%d / %d", scorearray[level][B_Q_CORRECT], scorearray[level][B_Q_SOLVED]);
 	gotoxy(54, 20);
-	printf("%7d Á¡", scorearray[level][CORRECT]);
+	printf("%7d ì ", scorearray[level][CORRECT]);
 	gotoxy(69, 20);
-	printf("%7d Á¡", scorearray[level][B_CORRECT]);
+	printf("%7d ì ", scorearray[level][B_CORRECT]);
 	gotoxy(54, 22);
-	printf("%7d Á¡", scorearray[level][TIME]);
+	printf("%7d ì ", scorearray[level][TIME]);
 	gotoxy(69, 22);
-	printf("%7d Á¡", scorearray[level][B_TIME]);
+	printf("%7d ì ", scorearray[level][B_TIME]);
 	gotoxy(56, 24);
-	printf("%4d Á¡", scorearray[level][COMBO]);
+	printf("%4d ì ", scorearray[level][COMBO]);
 	gotoxy(71, 24);
-	printf("%4d Á¡", scorearray[level][B_COMBO]);
+	printf("%4d ì ", scorearray[level][B_COMBO]);
 	gotoxy(56, 25);
 	printf("(%d COMBO)", scorearray[level][COMBO] / BonusPerCombo);
 	gotoxy(71, 25);
@@ -123,28 +196,28 @@ int Scorecard(int level)
 	gotoxy(27, 26);
 	printf("________________________________________________________________");
 	gotoxy(37, 28);
-	printf("ÇÕ°è");
+	printf("í•©ê³„");
 	gotoxy(56, 28);
-	printf("%d Á¡", scorearray[level][TOTAL]);
+	printf("%d ì ", scorearray[level][TOTAL]);
 	gotoxy(72, 28);
-	printf("%d Á¡", scorearray[level][BOSS]);
+	printf("%d ì ", scorearray[level][BOSS]);
 	gotoxy(67, 30);
-	printf("ÃÑÁ¡: %7d Á¡", scorearray[level][TOTAL] + scorearray[level][BOSS]);
+	printf("ì´ì : %7d ì ", scorearray[level][TOTAL] + scorearray[level][BOSS]);
 	gotoxy(67, 32);
-	printf("´©Àû: %7d Á¡", TotalScore);
+	printf("ëˆ„ì : %7d ì ", TotalScore);
 
 	
-	system("pause");////ÀÓ½Ã
+	system("pause");////ì„ì‹œ
 
 	gotoxy(25, 31);
 	if (level != HIGH && life != 0) {
-		printf("[ %sÇĞ±³·Î ÁøÇàÇÏ·Á¸é g, ¸ŞÀÎ ¸Ş´º·Î µ¹¾Æ°¡½Ã·Á¸é ESCÅ°¸¦ ´­·¯ÁÖ¼¼¿ä.]", next);
+		printf("[ %sí•™êµë¡œ ì§„í–‰í•˜ë ¤ë©´ g, ë©”ì¸ ë©”ë‰´ë¡œ ëŒì•„ê°€ì‹œë ¤ë©´ ESCí‚¤ë¥¼ ëˆŒëŸ¬ì£¼ì„¸ìš”.]", next);
 		gotoxy(25, 32);
-		printf(" ¾Æ¹«Å°µµ ´©¸£Áö ¾ÊÀ¸¸é ÀÚµ¿À¸·Î %sÇĞ±³·Î ÀÔÇĞÇÕ´Ï´Ù. [8ÃÊ]", next);
+		printf(" ì•„ë¬´í‚¤ë„ ëˆ„ë¥´ì§€ ì•Šìœ¼ë©´ ìë™ìœ¼ë¡œ %sí•™êµë¡œ ì…í•™í•©ë‹ˆë‹¤. [8ì´ˆ]", next);
 		t1 = clock(0);
 	}
 	else
-		printf("[ ¸ŞÀÎ ¸Ş´º·Î µ¹¾Æ°¡½Ã·Á¸é ESCÅ°¸¦ ´­·¯ÁÖ¼¼¿ä.]");
+		printf("[ ë©”ì¸ ë©”ë‰´ë¡œ ëŒì•„ê°€ì‹œë ¤ë©´ ESCí‚¤ë¥¼ ëˆŒëŸ¬ì£¼ì„¸ìš”.]");
 
 
 	while (1)
@@ -177,57 +250,57 @@ void KU(int type)
 {
 	cursor(0);
 	gotoxy(0, 9);
-	printf("\t\t\t\t            ¡á¡á                      ¡á¡á\n");
-	printf("\t\t\t\t            ¡á  ¡á    ¡á¡á¡á¡á¡á    ¡á  ¡á\n");
-	printf("\t\t\t\t            ¡á    ¡á¡á          ¡á¡á    ¡á\n");
-	printf("\t\t\t\t            ¡á  ¡á¡á              ¡á¡á  ¡á\n");
-	printf("\t\t\t\t        ¡á¡á¡á¡á        ¡á    ¡á      ¡á¡á¡á¡á\n");
-	printf("\t\t\t\t    ¡á¡á  ¡á            ¡á    ¡á          ¡á  ¡á¡á\n");
-	printf("\t\t\t\t  ¡á      ¡á      ¡á      ¡á  ¡á  ¡á      ¡á      ¡á\n");
-	printf("\t\t\t\t¡á      ¡á      ¡á          ¡á      ¡á      ¡á      ¡á\n");
-	printf("\t\t\t\t¡á      ¡á                                  ¡á      ¡á\n");
+	printf("\t\t\t\t            â– â–                       â– â– \n");
+	printf("\t\t\t\t            â–   â–     â– â– â– â– â–     â–   â– \n");
+	printf("\t\t\t\t            â–     â– â–           â– â–     â– \n");
+	printf("\t\t\t\t            â–   â– â–               â– â–   â– \n");
+	printf("\t\t\t\t        â– â– â– â–         â–     â–       â– â– â– â– \n");
+	printf("\t\t\t\t    â– â–   â–             â–     â–           â–   â– â– \n");
+	printf("\t\t\t\t  â–       â–       â–       â–   â–   â–       â–       â– \n");
+	printf("\t\t\t\tâ–       â–       â–           â–       â–       â–       â– \n");
+	printf("\t\t\t\tâ–       â–                                   â–       â– \n");
 	switch (type)
 	{
 	case 0:
-		printf("\t\t\t\t  ¡á¡á¡á                                      ¡á¡á¡á\n");
-		printf("\t\t\t\t      ¡á      ¡á¡á¡á¡á¡á      ¡á¡á¡á¡á¡á      ¡á\n");
-		printf("\t\t\t\t      ¡á        ¡á  ¡á          ¡á  ¡á        ¡á\n");
+		printf("\t\t\t\t  â– â– â–                                       â– â– â– \n");
+		printf("\t\t\t\t      â–       â– â– â– â– â–       â– â– â– â– â–       â– \n");
+		printf("\t\t\t\t      â–         â–   â–           â–   â–         â– \n");
 		break;
 	case 1:
-		printf("\t\t\t\t  ¡á¡á¡á          ¡á              ¡á          ¡á¡á¡á\n");
-		printf("\t\t\t\t      ¡á        ¡á  ¡á          ¡á  ¡á        ¡á\n");
-		printf("\t\t\t\t      ¡á                                      ¡á\n");
+		printf("\t\t\t\t  â– â– â–           â–               â–           â– â– â– \n");
+		printf("\t\t\t\t      â–         â–   â–           â–   â–         â– \n");
+		printf("\t\t\t\t      â–                                       â– \n");
 		break;
 	case 2:
-		printf("\t\t\t\t  ¡á¡á¡á            ¡á            ¡á          ¡á¡á¡á\n");
-		printf("\t\t\t\t      ¡á          ¡á¡á          ¡á¡á          ¡á\n");
-		printf("\t\t\t\t      ¡á          ¡á¡á          ¡á¡á          ¡á\n");
+		printf("\t\t\t\t  â– â– â–             â–             â–           â– â– â– \n");
+		printf("\t\t\t\t      â–           â– â–           â– â–           â– \n");
+		printf("\t\t\t\t      â–           â– â–           â– â–           â– \n");
 		break;
 	}
 
-	printf("\t\t\t\t    ¡á                  ¡á  ¡á                  ¡á\n");
-	printf("\t\t\t\t    ¡á            ¡á¡á¡á¡á¡á¡á¡á¡á¡á            ¡á\n");
-	printf("\t\t\t\t    ¡á        ¡á¡á¡á              ¡á¡á¡á        ¡á\n");
+	printf("\t\t\t\t    â–                   â–   â–                   â– \n");
+	printf("\t\t\t\t    â–             â– â– â– â– â– â– â– â– â–             â– \n");
+	printf("\t\t\t\t    â–         â– â– â–               â– â– â–         â– \n");
 	switch (type)
 	{
 	case 0:
-		printf("\t\t\t\t    ¡á    ¡á¡á          ¡á¡á¡á          ¡á¡á    ¡á\n");
-		printf("\t\t\t\t    ¡á  ¡á            ¡á      ¡á            ¡á  ¡á\n");
+		printf("\t\t\t\t    â–     â– â–           â– â– â–           â– â–     â– \n");
+		printf("\t\t\t\t    â–   â–             â–       â–             â–   â– \n");
 		break;
 	case 1:
 	case 2:
-		printf("\t\t\t\t    ¡á    ¡á¡á        ¡á      ¡á        ¡á¡á    ¡á\n");
-		printf("\t\t\t\t    ¡á  ¡á              ¡á¡á¡á              ¡á  ¡á\n");
+		printf("\t\t\t\t    â–     â– â–         â–       â–         â– â–     â– \n");
+		printf("\t\t\t\t    â–   â–               â– â– â–               â–   â– \n");
 		break;
 	}
-	printf("\t\t\t\t      ¡á                                      ¡á\n");
-	printf("\t\t\t\t      ¡á                                      ¡á\n");
-	printf("\t\t\t\t      ¡á                                      ¡á\n");
-	printf("\t\t\t\t        ¡á                                  ¡á\n");
-	printf("\t\t\t\t        ¡á¡á                              ¡á¡á\n");
-	printf("\t\t\t\t            ¡á¡á                      ¡á¡á\n");
-	printf("\t\t\t\t              ¡á¡á                  ¡á¡á\n");
-	printf("\t\t\t\t                  ¡á¡á¡á¡á¡á¡á¡á¡á¡á\n");
+	printf("\t\t\t\t      â–                                       â– \n");
+	printf("\t\t\t\t      â–                                       â– \n");
+	printf("\t\t\t\t      â–                                       â– \n");
+	printf("\t\t\t\t        â–                                   â– \n");
+	printf("\t\t\t\t        â– â–                               â– â– \n");
+	printf("\t\t\t\t            â– â–                       â– â– \n");
+	printf("\t\t\t\t              â– â–                   â– â– \n");
+	printf("\t\t\t\t                  â– â– â– â– â– â– â– â– â– \n");
 	Sleep(700);
 	system("cls");
 }

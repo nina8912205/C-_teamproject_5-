@@ -33,39 +33,51 @@ void h_boss()
 	printf("고등학교 교장 선생님을 이기세요");
 	Sleep(2000);
 	system("cls");
-	if (addtime >= 1) {
-		drawline(21, 8, 75, 25);
-		drawitem();
-		drawmenu();
-		gotoxy(32, 15);
-		printf("시간 추가 아이템이 %d 개 있습니다.", addtime);
-		Sleep(1000);
-		gotoxy(32, 17);
-		printf("사용하시겠습니까? [y/n]");
-		item = _getch();
-		if (item == 'y') {
-			gotoxy(32, 19);
-			printf("아이템을 몇 개 사용하시겠습니까? ");
-			scanf("%d", &use);
-			gotoxy(32, 21);
-			printf("아이템을 사용합니다.");
+	while (1) {
+		if (addtime >= 1) {//******************05/29 민영 시간 추가 물약 개수 질문 및 사용
+			system("cls");
+			drawline(21, 8, 75, 25);
+			drawitem();
+			drawmenu();
+			gotoxy(32, 15);
+			printf("시간 추가 아이템이 %d 개 있습니다.", addtime);
 			Sleep(1000);
-			gotoxy(32, 23);
-			printf("제한 시간이 %d초 늘어납니다.", use);
-			Sleep(2000);
-			for (i = 0; i < use; i++) {
-				addtime--;
-				H_Boss_time++;
+			gotoxy(32, 17);
+			printf("사용하시겠습니까? [y/n]");
+			item = _getch();
+			if (item == 'y') {
+				gotoxy(32, 19);
+				printf("아이템을 몇 개 사용하시겠습니까? ");
+				scanf("%d", &use);
+				if (use <= addtime) {
+					for (i = 0; i < use; i++) {
+						gotoxy(32, 21);
+						printf("아이템을 사용합니다.");
+						Sleep(1000);
+						gotoxy(32, 23);
+						printf("제한 시간이 %d초 늘어납니다.", use);
+						Sleep(2000);
+						addtime--;
+						H_Boss_time++;
+					}
+					break;
+				}
+				else {
+					gotoxy(32, 21);
+					printf("잘못된 입력입니다.");
+					Sleep(1000);
+					continue;
+				}
+			}
+			else if (item == 'n') {
+				gotoxy(32, 19);
+				printf("아이템을 사용하지 않습니다.");
+				Sleep(1000);
 			}
 		}
-		else if (item == 'n') {
-			gotoxy(32, 19);
-			printf("아이템을 사용하지 않습니다.");
-			Sleep(1000);
-		}
-		system("cls");
 	}
 
+	system("cls");
 	// 게임 진행
 	for (int i = 1; i <= 5; i++)
 	{

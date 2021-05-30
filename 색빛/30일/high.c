@@ -1,6 +1,6 @@
 #include "common.h"
 
-void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
+void high(int n) // high(0): ì²˜ìŒì‹œì‘, high(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int O_X[], scorearray[SCHSIZE][ASIZE], TotalScore;
 	extern int life, changeword, addtime;
@@ -11,7 +11,7 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 	int timelimit, result;
 
 	gobackstart = 0;
-	time_left = 0;  // ³²Àº½Ã°£ ÃÊ±âÈ­
+	time_left = 0;  // ë‚¨ì€ì‹œê°„ ì´ˆê¸°í™”
 	resetScore(H);
 	resetOX();
 
@@ -23,16 +23,16 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 
 	welcome(H);
 
-	drawline(21, 8, 75, 25);       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);    // ì•„ì´í…œ ë½‘ê¸°
 	system("cls");
 
 	for (grade = 1; grade <= 1; grade++)
 	{
-		score = grade * 5000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 5000; // í•™ë…„ ë‹¹ ë°°ì 
 
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if (life == 0)
 			break;
 
@@ -43,43 +43,43 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 			printf("m_correct: %d, m_combo: %d", scorearray[H][CORRECT], scorearray[H][COMBO]);
 			scorearray[H][Q_SOLVED]++;
 
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			drawline(21, 8, 75, 25);
-			draws("°íµî", grade, num);
+			draws("ê³ ë“±", grade, num);
 			drawitem();
 			drawmenu();
 
-			// ¹®Á¦Ãâ·Â
-			gotoxy(32, 17);	printf("¹®Á¦ : ");
+			// ë¬¸ì œì¶œë ¥
+			gotoxy(32, 17);	printf("ë¬¸ì œ : ");
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
-			case 1:                    // 1ÇĞ³â: 7±ÛÀÚ ¿µ´Ü¾î
+			case 1:                    // 1í•™ë…„: 7ê¸€ì ì˜ë‹¨ì–´
 				random_word(10, word);
 				break;
-			case 2:                    // 2ÇĞ³â: ·£´ı ¹®ÀÚ¿­(7±ÛÀÚ)
+			case 2:                    // 2í•™ë…„: ëœë¤ ë¬¸ìì—´(7ê¸€ì)
 				word_short(word);
 				break;
-			case 3:                    // 3ÇĞ³â: ÂªÀº ±Û
+			case 3:                    // 3í•™ë…„: ì§§ì€ ê¸€
 				word_short_h(word);
 				break;
 			}
-			gotoxy(70, 18);	printf("¹èÁ¡ : %d Á¡", score);
+			gotoxy(70, 18);	printf("ë°°ì  : %d ì ", score);
 
-			// ¹®Á¦¸ÂÃß±â
-			gotoxy(32, 19);	printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+			// ë¬¸ì œë§ì¶”ê¸°
+			gotoxy(32, 19);	printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 			cursor(1);
 			timelimit = Htime(grade);
 			result = game(timelimit, input, word, scorearray[H][Q_SOLVED]);
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == 5)
 			{
 				num--;
 				continue;
 			}
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ
 			while (1)
 			{
 				if (result == 1)
@@ -91,16 +91,16 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 					scorearray[H][Q_CORRECT]++;
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					drawline(21, 8, 75, 25);
-					draws("°íµî", grade, num);
+					draws("ê³ ë“±", grade, num);
 					drawitem();
 					drawmenu();
-					gotoxy(32, 17);	printf("¹®Á¦ : %s", word);
-					gotoxy(70, 17);	printf("¹èÁ¡ : %d Á¡", score);
-					gotoxy(32, 19);	printf("¹®Á¦¸¦ µû¶ó Ä¡¼¼¿ä: ");
+					gotoxy(32, 17);	printf("ë¬¸ì œ : %s", word);
+					gotoxy(70, 17);	printf("ë°°ì  : %d ì ", score);
+					gotoxy(32, 19);	printf("ë¬¸ì œë¥¼ ë”°ë¼ ì¹˜ì„¸ìš”: ");
 					timelimit = Htime(grade);
 					result = game(timelimit, input, word, scorearray[H][Q_SOLVED]);
 				}
@@ -114,7 +114,7 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 			if (gobackstart)
 				break;
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[scorearray[H][Q_SOLVED] - 1] = result;			
 		}
 		if (gobackstart)
@@ -122,12 +122,10 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 	}
 	if (!gobackstart)
 	{
-		// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+		// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 		if (life > 0)
 			h_boss();
 
-		system("pause");
-		// ¼ºÀûÇ¥ Ãâ·Â
 		end_game = Scorecard(H);
 		system("pause");
 

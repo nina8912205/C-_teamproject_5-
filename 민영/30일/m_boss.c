@@ -1,6 +1,6 @@
 #include "common.h"
 #define M_Bscore 10000
-int M_Boss_time = 6;
+int M_Boss_time = 10;
 
 int M_num_Q_boss = 0;//중학교 보스에서 푼 문제 수 기록
 int M_O_BOSS = 0;	//중학교 보스에서 맞은 문제 수 기록

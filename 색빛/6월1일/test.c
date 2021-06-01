@@ -63,7 +63,7 @@ void test(int level)
 		if ((item[LIFE]) == 0)
 			break;
 
-		score = level * 8000;
+		score = (level + 1) * 8000;
 		boss_layout(level, num, score);
 		scorearray[level][B_Q_SOLVED]++;		
 

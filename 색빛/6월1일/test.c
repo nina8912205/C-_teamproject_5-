@@ -12,37 +12,37 @@ void test(int level)
 	int use, num, score;
 	int result, timelimit;
 
-	// ¸®¼Â
+	// ë¦¬ì…‹
 	
 	resetOX();
 	timelimit = Ttime(level);
 	
-	// ·¹ÀÌ¾Æ¿ô
+	// ë ˆì´ì•„ì›ƒ
 	system("cls");
 	drawline(21, 8, 75, 25);
 
-	// °ÔÀÓ ½ºÅä¸®
-	gotoxy(32, 15);	printf("ÃàÇÏÇÕ´Ï´Ù");
+	// ê²Œì„ ìŠ¤í† ë¦¬
+	gotoxy(32, 15);	printf("ì¶•í•˜í•©ë‹ˆë‹¤");
 	Sleep(1000);
-	gotoxy(32, 17);	printf("%sÇĞ±³ ±³À°°úÁ¤À» ¹«»çÈ÷ ¸¶ÃÆ½À´Ï´Ù", sch[level]);
+	gotoxy(32, 17);	printf("%sí•™êµ êµìœ¡ê³¼ì •ì„ ë¬´ì‚¬íˆ ë§ˆì³¤ìŠµë‹ˆë‹¤", sch[level]);
 	Sleep(1000);
-	gotoxy(32, 19);	printf("%sÇĞ±³ ±³Àå ¼±»ı´ÔÀ» ÀÌ±â¼¼¿ä", sch[level]);
+	gotoxy(32, 19);	printf("%sí•™êµ êµì¥ ì„ ìƒë‹˜ì„ ì´ê¸°ì„¸ìš”", sch[level]);
 	Sleep(2000);
 	system("cls");
 
 	if (item[ADDTIME]) {
 		drawline(21, 8, 75, 25);
 		drawitem();
-		gotoxy(32, 15);	printf("½Ã°£ Ãß°¡ ¾ÆÀÌÅÛÀÌ ÀÖ½À´Ï´Ù.");
+		gotoxy(32, 15);	printf("ì‹œê°„ ì¶”ê°€ ì•„ì´í…œì´ ìˆìŠµë‹ˆë‹¤.");
 		Sleep(1000);
-		gotoxy(32, 17);	printf("»ç¿ëÇÏ½Ã°Ú½À´Ï±î? [y/n]");
+		gotoxy(32, 17);	printf("ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ? [y/n]");
 		use = _getch();
 		switch (use)
 		{
 		case 'y':
-			gotoxy(32, 19); printf("¾ÆÀÌÅÛÀ» »ç¿ëÇÕ´Ï´Ù.");
+			gotoxy(32, 19); printf("ì•„ì´í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.");
 			Sleep(1000);
-			gotoxy(32, 21); printf("Á¦ÇÑ½Ã°£ÀÌ %dÃÊ ´Ã¾î³³´Ï´Ù.", item[ADDTIME]);
+			gotoxy(32, 21); printf("ì œí•œì‹œê°„ì´ %dì´ˆ ëŠ˜ì–´ë‚©ë‹ˆë‹¤.", item[ADDTIME]);
 			Sleep(1000);
 			while (item[ADDTIME])
 			{
@@ -51,15 +51,15 @@ void test(int level)
 			}
 			break;
 		case 'n':
-			gotoxy(32, 19);	printf("¾ÆÀÌÅÛÀ» »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.");
+			gotoxy(32, 19);	printf("ì•„ì´í…œì„ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			Sleep(1000);
 			break;				
 		}
 	}
-		// °ÔÀÓ ÁøÇà
+		// ê²Œì„ ì§„í–‰
 	for (num = 1; num <= 5; num++)
 	{
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if ((item[LIFE]) == 0)
 			break;
 
@@ -67,7 +67,7 @@ void test(int level)
 		boss_layout(level, num, score);
 		scorearray[level][B_Q_SOLVED]++;		
 
-		// ¹®Á¦ ÃâÁ¦
+		// ë¬¸ì œ ì¶œì œ
 			
 		switch (level)
 		{
@@ -85,7 +85,7 @@ void test(int level)
 			break;
 		}
 		
-		// ¹®Á¦ ¸ÂÃß±â & °á°ú
+		// ë¬¸ì œ ë§ì¶”ê¸° & ê²°ê³¼
 			
 		result = game(50, timelimit, input, word, scorearray[level][B_Q_SOLVED], level, 1, score);
 
@@ -102,16 +102,16 @@ void test(int level)
 				boss_time(level, TimeBonus(time_left));
 				if (O_X[scorearray[level][B_Q_SOLVED] - 2] == 1)
 					combo(level);
-				scorearray[level][B_Q_CORRECT]++;//¸ÂÀº ¹®Á¦¼ö ±â·Ï
+				scorearray[level][B_Q_CORRECT]++;//ë§ì€ ë¬¸ì œìˆ˜ ê¸°ë¡
 				break;
 			}
-			else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+			else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 			{
-				// ¹®Á¦ ´Ù½Ã Ãâ·Â
+				// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 				boss_layout(level, num, score);
 				gotoxy(40, 19);	printf("%s", word);
 				timelimit = Ttime(level);
-				result = game(40, timelimit, input, word, scorearray[level][B_Q_SOLVED]);
+				result = game(40, timelimit, input, word, scorearray[level][B_Q_SOLVED], level, 1, score);
 			}
 			else if (result == 4)
 			{
@@ -124,7 +124,7 @@ void test(int level)
 		if (gobackstart)
 			break;
 
-		// Á¤¿ÀÇ¥±â·Ï
+		// ì •ì˜¤í‘œê¸°ë¡
 		O_X[scorearray[level][B_Q_SOLVED] - 1] = result;
 		system("cls");
 	}

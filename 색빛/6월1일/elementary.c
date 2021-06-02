@@ -40,7 +40,7 @@ void elementary(int n)
 
 			/*gotoxy(32, 24);	printf("total: %d, e_time: %d", TotalScore, scorearray[E][TIME]);
 			gotoxy(32, 25);	printf("e_correct: %d, e_combo: %d", scorearray[E][CORRECT], scorearray[E][COMBO]);*/
-		
+			scorearray[E][Q_SOLVED]++;
 
 			// 레이아웃						
 			layout(E, grade, num, score);
@@ -99,7 +99,7 @@ void elementary(int n)
 					correct(E, score);
 					if (O_X[scorearray[E][Q_SOLVED] - 2] == 1)
 						combo(E);
-					scorearray[E][Q_CORRECT]++;//맞은 문제수 기록
+					
 					break;
 				}
 				else if (result == 2) // 메뉴에서 돌아왔을때

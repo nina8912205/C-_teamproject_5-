@@ -102,7 +102,6 @@ void test(int level)
 				boss_time(level, TimeBonus(time_left));
 				if (O_X[scorearray[level][B_Q_SOLVED] - 2] == 1)
 					combo(level);
-				scorearray[level][B_Q_CORRECT]++;//맞은 문제수 기록
 				break;
 			}
 			else if (result == 2) // 메뉴에서 돌아왔을때

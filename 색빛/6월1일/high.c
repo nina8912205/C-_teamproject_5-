@@ -77,7 +77,6 @@ void high(int n) // high(0): 처음시작, high(1): 처음아님.
 					correct(H, score);
 					if (O_X[scorearray[H][Q_SOLVED] - 2] == 1)
 						combo(H);
-					scorearray[H][Q_CORRECT]++;
 					break;
 				}
 				else if (result == 2) // 메뉴에서 돌아왔을때

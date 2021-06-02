@@ -1,7 +1,7 @@
 #include "common.h"
 #define MSIZE 7
 
-void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
+void middle(int n) // middle(0): ì²˜ìŒì‹œì‘, middle(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int O_X[], scorearray[SCHSIZE][ASIZE], TotalScore;
 	extern int item[3];
@@ -11,7 +11,7 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 	int grade, score = 0, x = 0;
 	int timelimit, result;
 
-	// ¸®¼Â
+	// ë¦¬ì…‹
 	gobackstart = 0;
 	time_left = 0;
 	resetScore(M);
@@ -25,13 +25,13 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 
 	welcome(M);
 
-	drawline(21, 8, 75, 25);       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);                // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);                // ì•„ì´í…œ ë½‘ê¸°
 
 	for (grade = 1; grade <= 3; grade++)
 	{
-		score = grade * 3000; // ÇĞ³â ´ç ¹èÁ¡
+		score = grade * 3000; // í•™ë…„ ë‹¹ ë°°ì 
 
 		for (int num = 1; num <= 3; num++)
 		{
@@ -42,37 +42,37 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 			gotoxy(32, 25); printf("m_correct: %d, m_combo: %d", scorearray[M][CORRECT], scorearray[M][COMBO]);*/
 			scorearray[M][Q_SOLVED]++;
 
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			layout(M, grade, num, score);
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			timelimit = Mtime(grade);
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
 			case 1:
-				gotoxy(56, 19);// 1ÇĞ³â: 7±ÛÀÚ ¿µ´Ü¾î				
+				gotoxy(56, 19);// 1í•™ë…„: 7ê¸€ì ì˜ë‹¨ì–´				
 				x = 56;
 				word_7(word);
 				break;
 			case 2:
-				gotoxy(56, 19);// 2ÇĞ³â: ·£´ı ¹®ÀÚ¿­(7±ÛÀÚ)
+				gotoxy(56, 19);// 2í•™ë…„: ëœë¤ ë¬¸ìì—´(7ê¸€ì)
 				x = 56;
 				random_word(MSIZE, word);
 				break;
 			case 3:
-				gotoxy(40, 19);// 3ÇĞ³â: ÂªÀº ±Û
+				gotoxy(40, 19);// 3í•™ë…„: ì§§ì€ ê¸€
 				x = 40;
 				word_short(word);
 				break;
 			}
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			
 			result = game(x, timelimit, input, word, scorearray[M][Q_SOLVED], M, 0, score);
 			
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == 5)
 			{
 				num--;
@@ -80,7 +80,7 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 				continue;
 			}
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½, 3: ½ÃÀÛ¸Ş´º 4:·¹º§ Àç¼±ÅÃ 5:´Ü¾î¹Ù²Ù±â
+			// result 0: ì˜¤ë‹µ, 1: ì •ë‹µ, 2: ë©”ë‰´ì—´ì—ˆìŒ, 3: ì‹œì‘ë©”ë‰´ 4:ë ˆë²¨ ì¬ì„ íƒ 5:ë‹¨ì–´ë°”ê¾¸ê¸°
 			while (1)
 			{
 				if (result == 1)
@@ -89,14 +89,14 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 					correct(M, score);
 					if (O_X[scorearray[M][Q_SOLVED] - 2] == 1)
 						combo(M);
-					scorearray[M][Q_CORRECT]++;
+				
 					break;
 				}
-				else if (result == 2) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+				else if (result == 2) // ë©”ë‰´ì—ì„œ ëŒì•„ì™”ì„ë•Œ
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+					// ë¬¸ì œ ë‹¤ì‹œ ì¶œë ¥
 					layout(M, grade, num, score);
-					gotoxy(40, 19);	printf("¹®Á¦ : %s", word);
+					gotoxy(40, 19);	printf("ë¬¸ì œ : %s", word);
 					timelimit = Mtime(grade);
 					result = game(40, timelimit, input, word, scorearray[M][Q_SOLVED], M, 0, score);
 				}
@@ -109,7 +109,7 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 			}
 			if (gobackstart)
 				break;
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[scorearray[M][Q_SOLVED] - 1] = result;			
 		}
 		if (gobackstart)
@@ -120,11 +120,11 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 
 	if (!gobackstart)
 	{
-		// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+		// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 		if (item[LIFE])
 			test(M);
 
-		// ¼ºÀûÇ¥ Ãâ·Â
+		// ì„±ì í‘œ ì¶œë ¥
 		end_game = Scorecard(M);
 
 		if (item[LIFE] && end_game)

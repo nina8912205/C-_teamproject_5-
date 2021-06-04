@@ -12,40 +12,40 @@ void test(int level)
 	int key, addtime = 0, num;
 	int result, x = 0;
 
-	// ¸®¼Â
+	// ë¦¬ì…‹
 	
 	resetOX();
 	
-	// ·¹ÀÌ¾Æ¿ô
+	// ë ˆì´ì•„ì›ƒ
 	system("cls");
 	KU(2);
 	KU(4);
 	system("cls");
 	drawline(21, 8, 75, 25);
 
-	// °ÔÀÓ ½ºÅä¸®
+	// ê²Œì„ ìŠ¤í† ë¦¬
 	
-	gotoxy(50, 19);	printf("%s! ÃàÇÏÇÑ´ÙKU!", name);
+	gotoxy(50, 19);	printf("%s! ì¶•í•˜í•œë‹¤KU!", name);
 	Sleep(1500);
-	gotoxy(43, 21);	printf("%sÇĞ±³ ±³À°°úÁ¤À» ¹«»çÈ÷ ¸¶ÃÆ¾î!", sch[level]);
+	gotoxy(43, 21);	printf("%sí•™êµ êµìœ¡ê³¼ì •ì„ ë¬´ì‚¬íˆ ë§ˆì³¤ì–´!", sch[level]);
 	Sleep(1500);
-	gotoxy(35, 23);	printf("ÀÌÁ¦ %sÇĞ±³ Á¹¾÷½ÃÇèÀ» Åë°úÇÏ¸é Á¹¾÷ÇÒ ¼ö ÀÖ¾î!", sch[level]);
+	gotoxy(35, 23);	printf("ì´ì œ %sí•™êµ ì¡¸ì—…ì‹œí—˜ì„ í†µê³¼í•˜ë©´ ì¡¸ì—…í•  ìˆ˜ ìˆì–´!", sch[level]);
 	Sleep(1500);
 	system("cls");
 
 	if (item[ADDTIME]) {
 		drawline(21, 8, 75, 25);
 		drawitem();
-		gotoxy(43, 17);	printf("[¾Ë¸²] ½Ã°£ Áõ°¡ ¾ÆÀÌÅÛÀÌ ÀÖ½À´Ï´Ù.");
+		gotoxy(43, 17);	printf("[ì•Œë¦¼] ì‹œê°„ ì¦ê°€ ì•„ì´í…œì´ ìˆìŠµë‹ˆë‹¤.");
 		Sleep(1000);
-		gotoxy(50, 19);	printf("»ç¿ëÇÏ½Ã°Ú½À´Ï±î? [y/n]");
+		gotoxy(50, 19);	printf("ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ? [y/n]");
 		key = _getch();
 		switch (key)
 		{
 		case 'y':
-			gotoxy(50, 21); printf("¾ÆÀÌÅÛÀ» »ç¿ëÇÕ´Ï´Ù.");
+			gotoxy(50, 21); printf("ì•„ì´í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.");
 			Sleep(1000);
-			gotoxy(48, 23); printf("Á¦ÇÑ½Ã°£ÀÌ %dÃÊ ´Ã¾î³³´Ï´Ù.", item[ADDTIME]);
+			gotoxy(48, 23); printf("ì œí•œì‹œê°„ì´ %dì´ˆ ëŠ˜ì–´ë‚©ë‹ˆë‹¤.", item[ADDTIME]);
 			Sleep(1000);
 			while (item[ADDTIME])
 			{
@@ -54,21 +54,21 @@ void test(int level)
 			}
 			break;
 		case 'n':
-			gotoxy(48, 21);	printf("¾ÆÀÌÅÛÀ» »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.");
+			gotoxy(48, 21);	printf("ì•„ì´í…œì„ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			Sleep(1000);
 			break;				
 		}
 	}
-		// °ÔÀÓ ÁøÇà
+		// ê²Œì„ ì§„í–‰
 	for (num = 1; num <= 5; num++)
 	{
-		// ¸ñ¼û °Ë»ç
+		// ëª©ìˆ¨ ê²€ì‚¬
 		if ((item[LIFE]) == 0)
 			break;
 
 		test_layout(level, num);	
 
-		// ¹®Á¦ ÃâÁ¦
+		// ë¬¸ì œ ì¶œì œ
 		SCORE[level][T_Q_SOLVED]++;
 		switch (level)
 		{
@@ -89,7 +89,7 @@ void test(int level)
 			break;
 		}
 		
-		// ¹®Á¦ ¸ÂÃß±â & °á°ú
+		// ë¬¸ì œ ë§ì¶”ê¸° & ê²°ê³¼
 			
 		result = game(x, input, word, T, level, addtime);
 
@@ -98,22 +98,25 @@ void test(int level)
 			num--;
 			continue;
 		}
-		while (1)
-		{
-			if (result == HOWTOPLAY) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+		do {
+			switch (result)
 			{
-				// ¹®Á¦ ´Ù½Ã Ãâ·Â
+			case HOWTOPLAY:
 				test_layout(level, num);
 				gotoxy(x, 19);	printf("%s", word);
 				result = game(x, input, word, T, level, addtime);
-			}
-			if (result == STARTMENU || result == CHANGE_LEVEL)
-				return;
-			else
 				break;
-		}
+			case CHANGE_LEVEL:
+				return;
+			case STARTMENU:
+				game_title();
+				return;
+			default:
+				break;
+			}
+		} while (result == HOWTOPLAY);
 
-		// Á¤¿ÀÇ¥±â·Ï
+		// ì •ì˜¤í‘œê¸°ë¡
 		O_X[SCORE[level][T_Q_SOLVED]] = result;
 		system("cls");
 	}

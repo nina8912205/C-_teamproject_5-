@@ -1,6 +1,6 @@
 #include "common.h"
 
-void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
+void high(int n) // high(0): ì²˜ìŒì‹œì‘, high(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int O_X[], SCORE[SCHSIZE][ASIZE], TotalScore;
 	extern int item[3];
@@ -21,9 +21,9 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 
 	welcome(H);
 
-	drawline(21, 8, 75, 25);       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);    // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);    // ì•„ì´í…œ ë½‘ê¸°
 
 	for (grade = 1; grade <= 3; grade++)
 	{
@@ -32,70 +32,72 @@ void high(int n) // high(0): Ã³À½½ÃÀÛ, high(1): Ã³À½¾Æ´Ô.
 
 		for (int num = 1; num <= 3; num++)
 		{
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			layout(H, grade, num);
 
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			gotoxy(40, 19);
 			SCORE[H][Q_SOLVED]++;
 
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
-			case 1: // 1ÇĞ³â: 10±ÛÀÚ ¿µ´Ü¾î				
+			case 1: // 1í•™ë…„: 10ê¸€ì ì˜ë‹¨ì–´				
 				x = 55;
 				gotoxy(x, 19);
 				random_word(10, word);
 				break;
-			case 2: // 2ÇĞ³â: ÂªÀº ±Û
+			case 2: // 2í•™ë…„: ì§§ì€ ê¸€
 				x = 50;
 				gotoxy(x, 19);
 				word_short(word);
 				break;
-			case 3: // 3ÇĞ³â: ´ú ÂªÀº ±Û
+			case 3: // 3í•™ë…„: ëœ ì§§ì€ ê¸€
 				x = 33;
 				gotoxy(x, 19);
 				word_short_h(word);
 				break;
 			}
 
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§ì¶”ê¸°
 			result = game(x, input, word,  H, grade, 0);
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == WORDITEM)
 			{
 				num--;
 				continue;
 			}
 
-			// result 0: ¿À´ä, 1: Á¤´ä, 2: ¸Ş´º¿­¾úÀ½
-			while (1)
-			{
-				if (result == HOWTOPLAY) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+			do {
+				switch (result)
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+				case HOWTOPLAY:
 					layout(H, grade, num);
 					gotoxy(x, 19);	printf("%s", word);
 					result = game(x, input, word, H, grade, 0);
-				}
-				if (result == STARTMENU || result == CHANGE_LEVEL)
-					return;
-				else
 					break;
-			}
+				case CHANGE_LEVEL:
+					return;
+				case STARTMENU:
+					game_title();
+					return;
+				default:
+					break;
+				}
+			} while (result == HOWTOPLAY);
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[SCORE[H][Q_SOLVED]] = result;
 		}
 
 		if (item[LIFE] && grade < 3)
 			gradeup();
 	}
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 	if (item[LIFE])
 		test(H);
 
-	// ¼ºÀûÇ¥ Ãâ·Â
+	// ì„±ì í‘œ ì¶œë ¥
 	end_game = Scorecard(H);
 
 	if (SCORE[E][T_Q_SOLVED]+ SCORE[M][T_Q_SOLVED] + SCORE[H][T_Q_SOLVED] == 15)

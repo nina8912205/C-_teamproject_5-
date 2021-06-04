@@ -1,7 +1,7 @@
 #include "common.h"
 #define MSIZE 7
 
-void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
+void middle(int n) // middle(0): ì²˜ìŒì‹œì‘, middle(1): ì²˜ìŒì•„ë‹˜.
 {
 	extern int O_X[], SCORE[SCHSIZE][ASIZE], TotalScore;
 	extern int item[3];
@@ -11,7 +11,7 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 	int grade, x = 0;
 	int result;
 
-	// ¸®¼Â
+	// ë¦¬ì…‹
 	resetOX();
 
 	if (!n)
@@ -22,9 +22,9 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 
 	welcome(M);
 
-	drawline(21, 8, 75, 25);       // ·¹ÀÌ¾Æ¿ô ±×¸®±â
+	drawline(21, 8, 75, 25);       // ë ˆì´ì•„ì›ƒ ê·¸ë¦¬ê¸°
 
-	item_random(2);                // ¾ÆÀÌÅÛ »Ì±â
+	item_random(2);                // ì•„ì´í…œ ë½‘ê¸°
 
 	for (grade = 1; grade <= 3; grade++)
 	{
@@ -34,35 +34,35 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 		for (int num = 1; num <= 3; num++)
 		{
 
-			// ·¹ÀÌ¾Æ¿ô
+			// ë ˆì´ì•„ì›ƒ
 			layout(M, grade, num);
 			SCORE[M][Q_SOLVED]++;
 
-			// ¹®Á¦Ãâ·Â
-			switch (grade) // ÇĞ³âº° ¹®Á¦ Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
 			case 1:
-				gotoxy(56, 19);// 1ÇĞ³â: 7±ÛÀÚ ¿µ´Ü¾î				
+				gotoxy(56, 19);// 1í•™ë…„: 7ê¸€ì ì˜ë‹¨ì–´				
 				x = 56;
 				word_7(word);
 				break;
 			case 2:
-				gotoxy(56, 19);// 2ÇĞ³â: ·£´ı ¹®ÀÚ¿­(7±ÛÀÚ)
+				gotoxy(56, 19);// 2í•™ë…„: ëœë¤ ë¬¸ìì—´(7ê¸€ì)
 				x = 56;
 				random_word(MSIZE, word);
 				break;
 			case 3:
-				gotoxy(40, 19);// 3ÇĞ³â: ÂªÀº ±Û
+				gotoxy(40, 19);// 3í•™ë…„: ì§§ì€ ê¸€
 				x = 40;
 				word_short(word);
 				break;
 			}
 
-			// ¹®Á¦¸ÂÃß±â			
+			// ë¬¸ì œë§ì¶”ê¸°			
 			result = game(x, input, word, M, grade, 0);
 			
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == WORDITEM)
 			{
 				num--;
@@ -72,22 +72,25 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 				continue;
 			}
 
-			while (1)
-			{
-				if (result == HOWTOPLAY) // ¸Ş´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+			do {
+				switch (result)
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+				case HOWTOPLAY:
 					layout(M, grade, num);
 					gotoxy(x, 19);	printf("%s", word);
 					result = game(x, input, word, M, grade, 0);
-				}
-				if (result == STARTMENU || result == CHANGE_LEVEL)
-					return;
-				else
 					break;
-			}
+				case CHANGE_LEVEL:
+					return;
+				case STARTMENU:
+					game_title();
+					return;
+				default:
+					break;
+				}
+			} while (result == HOWTOPLAY);
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[SCORE[M][Q_SOLVED]] = result;
 		}
 
@@ -95,11 +98,11 @@ void middle(int n) // middle(0): Ã³À½½ÃÀÛ, middle(1): Ã³À½¾Æ´Ô.
 			gradeup();
 	}
 
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÁßÇĞ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìˆì„ ê²½ìš°, ì¤‘í•™êµ ë³´ìŠ¤!
 	if (item[LIFE])
 		test(M);
 
-	// ¼ºÀûÇ¥ Ãâ·Â
+	// ì„±ì í‘œ ì¶œë ¥
 	end_game = Scorecard(M);
 
 	if (item[LIFE] && end_game == 0)

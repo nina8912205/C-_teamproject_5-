@@ -1,7 +1,7 @@
 #include "common.h"
 
 int O_X[MAX_Q] = { 0 }; 
-char sch[SCHSIZE][SIZE] = { "ÃÊµî","Áß","°íµî" };
+char sch[SCHSIZE][SIZE] = { "ì´ˆë“±","ì¤‘","ê³ ë“±" };
 
 void elementary(int n)
 {
@@ -32,71 +32,74 @@ void elementary(int n)
 
 		for (int num = 1; num <= 2; num++) 
 		{					
-			// ·¹ÀÌ¾Æ¿ô						
+			// ë ˆì´ì•„ì›ƒ						
 			layout(E, grade, num);
 			
-			// ¹®Á¦Ãâ·Â
+			// ë¬¸ì œì¶œë ¥
 			SCORE[E][Q_SOLVED]++;
 			gotoxy(61 - grade, 19);
 			
-			switch (grade) // ÇÐ³âº° ¹®Á¦ Ãâ·Â
+			switch (grade) // í•™ë…„ë³„ ë¬¸ì œ ì¶œë ¥
 			{
 			case 1:
 			case 2:
-				random_word(grade, word); // 1~2ÇÐ³â: ·£´ý ¹®ÀÚ¿­
+				random_word(grade, word); // 1~2í•™ë…„: ëžœë¤ ë¬¸ìžì—´
 				break;
 			case 3:
 				if (rand() % 2)
 					word_3(word);
 				else
-					random_word(grade, word); // 3ÇÐ³â: 3±ÛÀÚ ´Ü¾î or ·£´ý ¹®ÀÚ¿­
+					random_word(grade, word); // 3í•™ë…„: 3ê¸€ìž ë‹¨ì–´ or ëžœë¤ ë¬¸ìžì—´
 				break;
 			case 4:
 				if (rand() % 2)
 					word_4(word);
 				else
-					random_word(grade, word); // 4ÇÐ³â: 4±ÛÀÚ ´Ü¾î or ·£´ý ¹®ÀÚ¿­
+					random_word(grade, word); // 4í•™ë…„: 4ê¸€ìž ë‹¨ì–´ or ëžœë¤ ë¬¸ìžì—´
 				break;
 			case 5:
 				if (rand() % 2)
 					word_5(word);
 				else
-					random_word(grade, word); // 5ÇÐ³â: 5±ÛÀÚ ´Ü¾î or ·£´ý ¹®ÀÚ¿­
+					random_word(grade, word); // 5í•™ë…„: 5ê¸€ìž ë‹¨ì–´ or ëžœë¤ ë¬¸ìžì—´
 				break;
 			case 6:
 				if (rand() % 2)
 					word_6(word);
 				else
-					random_word(grade, word); // 6ÇÐ³â: 6±ÛÀÚ ´Ü¾î or ·£´ý ¹®ÀÚ¿­
+					random_word(grade, word); // 6í•™ë…„: 6ê¸€ìž ë‹¨ì–´ or ëžœë¤ ë¬¸ìžì—´
 				break;
 			}
 			
-			// ¹®Á¦¸ÂÃß±â
+			// ë¬¸ì œë§žì¶”ê¸°
 			result = game(61 - grade, input, word, E, grade, 0);
 
-			// ´Ü¾î ¹Ù²Ù±â ½ÇÇà
+			// ë‹¨ì–´ ë°”ê¾¸ê¸° ì‹¤í–‰
 			if (result == WORDITEM)
 			{
 				num--;
 				continue;
 			}
 
-			while (1)
-			{
-				if (result == HOWTOPLAY) // ¸Þ´º¿¡¼­ µ¹¾Æ¿ÔÀ»¶§
+			do {
+				switch (result)
 				{
-					// ¹®Á¦ ´Ù½Ã Ãâ·Â
+				case HOWTOPLAY:
 					layout(E, grade, num);
 					gotoxy(61 - grade, 19);	printf("%s", word);
 					result = game(61 - grade, input, word, E, grade, 0);
-				}
-				if (result == STARTMENU || result == CHANGE_LEVEL)
-					return;
-				else
 					break;
-			}
+				case CHANGE_LEVEL:
+					return;
+				case STARTMENU:
+					game_title();
+					return;
+				default:
+					break;
+				}
+			} while (result == HOWTOPLAY);
 
-			// Á¤¿ÀÇ¥ ±â·Ï
+			// ì •ì˜¤í‘œ ê¸°ë¡
 			O_X[SCORE[E][Q_SOLVED]] = result;				
 		}
 
@@ -104,13 +107,13 @@ void elementary(int n)
 			gradeup();
 	}
 	
-	// ¸ñ¼ûÀÌ ÀÖÀ» °æ¿ì, ÃÊµîÇÐ±³ º¸½º!
+	// ëª©ìˆ¨ì´ ìžˆì„ ê²½ìš°, ì´ˆë“±í•™êµ ë³´ìŠ¤!
 	if (item[LIFE])
 		test(E);
 
 	end_game = Scorecard(E);
 
-	// ´ÙÀ½ ´Ü°è·Î
+	// ë‹¤ìŒ ë‹¨ê³„ë¡œ
 	if (item[LIFE] && end_game == 0)
 		middle(1);
 		
